@@ -1,16 +1,14 @@
 @extends('adminlte::page')
-
-@section('title', 'Dashboard')
-
+@section('title', 'AAK')
 @section('content_header')
     
-Dashboard
+Selamat Datang
 
 @stop
 
 @section('content')
     
-Welcome to this beautiful admin panel.
+Aplikasi Aliran Kas pada Toko Sumber Rejeki
 
 
 @stop
