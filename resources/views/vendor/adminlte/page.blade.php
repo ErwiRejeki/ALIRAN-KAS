@@ -48,5 +48,47 @@
 
 @section('adminlte_js')
     @stack('js')
+    <script>
+        function deleteData(id, url) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url,
+                        type: 'DELETE',
+                        data: {
+                            "id": id,
+                            "_token": "{{ csrf_token() }}",
+                        },
+                        success: function(result) {
+                            Swal.fire(
+                                'Deleted!',
+                                'Your file has been deleted.',
+                                'success'
+                            ).then((result) => {
+                                location.reload();
+                            })
+                        },
+                        error: function(err) {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'Something went wrong!'
+                            }).then((result) => {
+                                location.reload();
+                            })
+                        }
+                    });
+                }
+            })
+        }
+    </script>
     @yield('js')
 @stop
