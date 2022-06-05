@@ -17,7 +17,9 @@ class Barang extends Migration
             $table->string('id_barang')->primary();
             $table->string('nama_barang');
             $table->double('harga_beli_barang',15);
+            $table->integer('margin_barang');
             $table->integer('stok_barang');
+            $table->string('satuan_barang');
             $table->string('potongan');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'))->nullable();

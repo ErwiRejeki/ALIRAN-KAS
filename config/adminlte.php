@@ -262,7 +262,7 @@ return [
                 ],
                 [
                     'text' => 'Supplier',
-                    'url'  => 'admin/settings',
+                    'url'  => 'supplier',
                     'icon' => 'fas fa-fw fa-users',
                 ],
                 [

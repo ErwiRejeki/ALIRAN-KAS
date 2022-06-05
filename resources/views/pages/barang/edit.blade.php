@@ -32,7 +32,9 @@
                             </div>
                         </x-slot>
                     </x-adminlte-input>
+                    <x-adminlte-input name="margin_barang" label="Margin Barang" placeholder="Margin Barang" type="number" igroup-size="sm" min=1 value="{{$data->barang->margin_barang}}" required />
                     <x-adminlte-input name="stok_barang" label="Stok Barang" placeholder="Stok Barang" type="number" igroup-size="sm" min=1 value="{{$data->barang->stok_barang}}" required />
+                    <x-adminlte-input name="satuan_barang" label="Satuan Barang" placeholder="Satuan Barang" type="text" igroup-size="sm" min=1 value="{{$data->barang->satuan_barang}}" required />
                     <x-adminlte-input name="potongan" label="Potongan Harga" placeholder="Potongan Harga" type="number" igroup-size="sm" min=1 value="{{$data->barang->potongan}}" required>
                         <x-slot name="prependSlot">
                             <div class="input-group-text bg-dark">

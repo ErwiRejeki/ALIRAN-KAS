@@ -27,7 +27,9 @@ class BarangController extends Controller
                 $item->id_barang,
                 $item->nama_barang,
                 Helper::rp($item->harga_beli_barang),
+                $item->margin_barang,
                 $item->stok_barang,
+                $item->satuan_barang,
                 Helper::rp($item->potongan),
                 Helper::btnEdit('/barang/' . $item->id_barang . '/edit') . Helper::btnDelete("deleteData('$item->id_barang', '$deleteLink')") 
             ];
@@ -38,7 +40,9 @@ class BarangController extends Controller
             'ID', 
             'Barang',
             ['label' => 'Harga Beli'],
+            ['label' => 'Margin Barang'],
             ['label' => 'Stok Barang'],
+            ['label' => 'Satuan Barang'],
             ['label' => 'Potongan Harga'],
             ['label' => 'Actions', 'no-export' => true, 'width' => 15],
         ];
@@ -46,7 +50,7 @@ class BarangController extends Controller
         $data->config = [
             'data' => $dataTables,
             'order' => [[1, 'asc']],
-            'columns' => [null, null, null, null, null, ['orderable' => false]],
+            'columns' => [null, null, null, null, null, null, null, ['orderable' => false]],
         ];
 
         return view('pages.barang.index', compact('data'));
@@ -75,7 +79,9 @@ class BarangController extends Controller
         $this->validate($request, [
             'nama_barang' => 'required ',
             'harga_beli_barang' => 'required ',
+            'margin_barang' => 'required ',
             'stok_barang' => 'required ',
+            'satuan_barang' => 'required ',
             'potongan' => 'required',
         ]);
         $store = new Barang($request->all());
@@ -125,7 +131,9 @@ class BarangController extends Controller
         $this->validate($request, [
             'nama_barang' => 'required ',
             'harga_beli_barang' => 'required ',
+            'margin_barang' => 'required ',
             'stok_barang' => 'required ',
+            'satuan_barang' => 'required ',
             'potongan' => 'required',
         ]);
         $update = Barang::findOrFail($id)->update($request->all());

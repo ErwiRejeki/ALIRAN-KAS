@@ -23,3 +23,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 use App\Http\Controllers\BarangController;
 Route::resource('barang', BarangController::class);
+
+use App\Http\Controllers\SupplierController;
+Route::resource('supplier', SupplierController::class);
