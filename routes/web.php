@@ -26,3 +26,9 @@ Route::resource('barang', BarangController::class);
 
 use App\Http\Controllers\SupplierController;
 Route::resource('supplier', SupplierController::class);
+
+use App\Http\Controllers\BiayaController;
+Route::resource('biaya', BiayaController::class);
+
+use App\Http\Controllers\TransaksiBiayaController;
+Route::resource('transaksi_biaya', TransaksiBiayaController::class);

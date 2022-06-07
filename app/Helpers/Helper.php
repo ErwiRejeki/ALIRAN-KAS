@@ -24,6 +24,10 @@ class Helper
         }
         return $modal + $transaksi;
     }
+    public static function tanggal_indo($p){
+        \Carbon\Carbon::setLocale('id');
+        return \Carbon\Carbon::parse($p)->translatedFormat('d F Y');;
+    }
     public static function getCode($table, $field, $code){
         $data = DB::table($table)->orderBy('created_at', 'DESC')->first();
         if(is_null($data)){

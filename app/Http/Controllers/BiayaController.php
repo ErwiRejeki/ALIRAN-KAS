@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Supplier;
+use App\Models\Biaya;
 use App\Helpers\Helper;
 
-class SupplierController extends Controller
+class BiayaController extends Controller
 {
     public function __construct()
     {
@@ -19,35 +19,31 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        $supplier = Supplier::all();
+        $biaya = Biaya::all();
         $dataTables = [];
-        foreach($supplier as $item){
-            $deleteLink = route('supplier.destroy', $item->id_supplier);
+        foreach($biaya as $item){
+            $deleteLink = route('biaya.destroy', $item->id_biaya);
             $dataTables[] = [
-                $item->id_supplier,
-                $item->nama_supplier,
-                $item->alamat_supplier,
-                $item->telp_supplier,
-                Helper::btnEdit('/supplier/' . $item->id_supplier . '/edit') . Helper::btnDelete("deleteData('$item->id_supplier', '$deleteLink')") 
+                $item->id_biaya,
+                $item->nama_biaya,
+                Helper::btnEdit('/biaya/' . $item->id_biaya . '/edit') . Helper::btnDelete("deleteData('$item->id_biaya', '$deleteLink')") 
             ];
         }
 
         $data =  new \stdClass();
         $data->heads = [ 
-            'ID_Supllier', 
-            'Nama Supplier',
-            ['label' => 'Alamat'],
-            ['label' => 'Telp'],
+            'ID_Biaya', 
+            'Nama Biaya',
             ['label' => 'Actions', 'no-export' => true, 'width' => 15],
         ];
 
         $data->config = [
             'data' => $dataTables,
+            'columnDefs' => [['targets' => "_all"]],
             'order' => [[1, 'asc']],
-            'columns' => [null, null, null, null, ['orderable' => false]],
         ];
 
-        return view('pages.supplier.index', compact('data'));
+        return view('pages.biaya.index', compact('data'));
     }
 
     /**
@@ -57,7 +53,7 @@ class SupplierController extends Controller
      */
     public function create()
     {
-        return view('pages.supplier.create');
+        return view('pages.biaya.create');
     }
 
     /**
@@ -71,15 +67,13 @@ class SupplierController extends Controller
         //validasi
         
         $this->validate($request, [
-            'nama_supplier' => 'required ',
-            'alamat_supplier' => 'required ',
-            'telp_supplier' => 'required ',
+            'nama_biaya' => 'required ',
         ]);
-        $store = new Supplier($request->all());
-        $store->id_supplier = Helper::getCode('supplier', 'id_supplier', 'SP-');
+        $store = new Biaya($request->all());
+        $store->id_biaya = Helper::getCode('biaya', 'id_biaya', 'SP-');
         $store->save();
-        return redirect()->route('supplier.index')
-            ->with('success','Menambah Supplier telah berhasil disimpan');
+        return redirect()->route('biaya.index')
+            ->with('success','Menambah Biaya telah berhasil disimpan');
     }
 
     /**
@@ -102,12 +96,12 @@ class SupplierController extends Controller
     public function edit($id)
     {
         $data =  new \stdClass();
-        $data->supplier = Supplier::find($id);
-        if(!$data->supplier){
-            return redirect()->route('supplier.index')
-                ->with('error','Supplier tidak ditemukan');
+        $data->biaya = Biaya::find($id);
+        if(!$data->biaya){
+            return redirect()->route('biaya.index')
+                ->with('error','Biaya tidak ditemukan');
         }
-        return view('pages.supplier.edit', compact('data'));
+        return view('pages.biaya.edit', compact('data'));
     }
 
     /**
@@ -120,13 +114,11 @@ class SupplierController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'nama_supplier' => 'required ',
-            'alamat_supplier' => 'required ',
-            'telp_supplier' => 'required ',
+            'nama_biaya' => 'required ',
         ]);
-        $update = Supplier::findOrFail($id)->update($request->all());
-        return redirect()->route('supplier.index')
-        ->with('success','Perubahan Supplier telah berhasil disimpan');
+        $update = Biaya::findOrFail($id)->update($request->all());
+        return redirect()->route('biaya.index')
+        ->with('success','Perubahan Biaya telah berhasil disimpan');
     }
 
     /**
@@ -137,7 +129,7 @@ class SupplierController extends Controller
      */
     public function destroy($id)
     {
-        $delete = Supplier::find($id);
+        $delete = Biaya::find($id);
         try {
             $delete->delete();
         } catch (\Illuminate\Database\QueryException $e) {

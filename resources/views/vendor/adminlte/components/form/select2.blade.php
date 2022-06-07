@@ -95,6 +95,11 @@
         display: none;
     }
 
+    .select2-container {
+        border: 1px solid #ced4da;
+        border-radius: 5px;
+    }
+
 </style>
 @endpush
 @endonce
