@@ -17,17 +17,12 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-
-    protected $table = 'users';
-    protected $primaryKey = 'id';
-    public $incrementing = false;
     protected $fillable = [
-        'id',
         'name',
-        'jabatan',
         'email',
         'password',
     ];
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -46,7 +41,4 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    use HasFactory;
-    
-    
 }

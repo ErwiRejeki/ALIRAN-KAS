@@ -26,6 +26,3 @@ Route::resource('barang', BarangController::class);
 
 use App\Http\Controllers\SupplierController;
 Route::resource('supplier', SupplierController::class);
-
-use App\Http\Controllers\UsersController;
-Route::resource('User', UsersController::class);
