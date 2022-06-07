@@ -267,12 +267,12 @@ return [
                 ],
                 [
                     'text' => 'Biaya ',
-                    'url'  => 'admin/settings',
+                    'url'  => 'biaya',
                     'icon' => 'fas fa-fw fa-money',
                 ],
                 [
                     'text' => 'Users',
-                    'url'  => 'admin/settings',
+                    'url'  => 'User',
                     'icon' => 'fas fa-fw fa-user',
                 ],
             ],
