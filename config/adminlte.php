@@ -266,9 +266,9 @@ return [
                     'icon' => 'fas fa-fw fa-users',
                 ],
                 [
-                    'text' => 'Biaya ',
-                    'url'  => 'admin/settings',
-                    'icon' => 'fas fa-fw fa-money',
+                    'text' => 'Biaya',
+                    'url'  => 'biaya',
+                    'icon' => 'fas fa-money-bill-alt',
                 ],
                 [
                     'text' => 'Users',
@@ -293,7 +293,7 @@ return [
                 ],
                 [
                     'text' => 'Biaya',
-                    'url'  => 'admin/settings',
+                    'url'  => 'transaksi_biaya',
                     'icon' => 'fas fa-fw fa-lock',
                 ],
             ],
@@ -415,6 +415,26 @@ return [
                     'type' => 'css',
                     'asset' => true,
                     'location' => '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.css',
+                ],
+            ],
+        ],
+        'TempusDominusBs4' => [
+            'active' => false,
+            'files' => [
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/moment/moment.min.js',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js',
+                ],
+                [
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => 'vendor/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css',
                 ],
             ],
         ],

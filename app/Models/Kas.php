@@ -5,13 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class users extends Model
+class Kas extends Model
 {
     use HasFactory;
-    protected $table = 'users';
-    protected $primaryKey = 'id';
+
+    protected $table = 'kas';
+    protected $primaryKey = 'kas_id';
     public $incrementing = false;
     protected $fillable = [
-        'id_barang', 'nama_barang', 'harga_beli_barang','margin_barang','stok_barang','satuan_barang','potongan'
+        'kas_id', 'kas_tgl', 'kas_type', 'kas_ket', 'kas_id_value', 'kas_debet', 'kas_kredit'
     ];
 }
