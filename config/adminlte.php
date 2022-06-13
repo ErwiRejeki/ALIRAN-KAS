@@ -272,7 +272,7 @@ return [
                 ],
                 [
                     'text' => 'Users',
-                    'url'  => 'admin/settings',
+                    'url'  => 'user',
                     'icon' => 'fas fa-fw fa-user',
                 ],
             ],
@@ -283,12 +283,12 @@ return [
             'submenu' => [
                 [
                     'text' => 'Penjualan',
-                    'url'  => 'admin/settings',
+                    'url'  => 'transaksi_penjualan',
                     'icon' => 'fas fa-fw fa-lock',
                 ],
                 [
                     'text' => 'Pembelian',
-                    'url'  => 'admin/settings',
+                    'url'  => 'transaksi_pembelian',
                     'icon' => 'fas fa-fw fa-lock',
                 ],
                 [

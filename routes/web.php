@@ -32,3 +32,9 @@ Route::resource('biaya', BiayaController::class);
 
 use App\Http\Controllers\TransaksiBiayaController;
 Route::resource('transaksi_biaya', TransaksiBiayaController::class);
+
+use App\Http\Controllers\UserController;
+Route::resource('user', UserController::class);
+
+use App\Http\Controllers\TransaksiPembelianController;
+Route::resource('transaksi_pembelian', TransaksiPembelianController::class);
