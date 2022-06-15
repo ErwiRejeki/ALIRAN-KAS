@@ -22,172 +22,78 @@ class TransaksiPembelianController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function list($id = null)
     {
-        $detailPembelian = DetailPembelian::all();
-        $dataTables = [];
-        foreach($detailPembelian as $item){
-            $deleteLink = route('transaksi_pembelian.destroy', $item->id_det_beli);
-            $dataTables[] = [
-                $item->id_det_beli,
-                $item->get_barang->nama_barang,
-                $item->get_supplier->nama_supplier,
-                $item->jml_beli,
-                $item->harga_beli,
-                Helper::tanggal_indo($item->tgl_beli),
-                Helper::rp($item->total_beli),
-                Helper::btnEdit('/transaksi_pembelian/' . $item->id_det_beli . '/edit') . Helper::btnDelete("deleteData('$item->id_det_beli', '$deleteLink')") 
-            ];
+        Session(['saldo' => Helper::saldo()]);
+        $data =  new \stdClass();
+        $data->list = DB::table('pembelian')->join('supplier', 'supplier.id_supplier', '=', 'pembelian.id_supplier')->get();
+        return view('pages.transaksi_pembelian.BeliData',  compact('data'));
+    }
+    
+    public function transaksi($id = null)
+    {
+        Session(['saldo' => Helper::saldo()]);
+        $data =  new \stdClass();
+        $data->edit = null;
+        $data->list = DB::table('detail_beli')->join('barang', 'barang.id_barang', '=', 'detail_beli.id_barang')->whereNull('id_beli')->get();
+        $data->barang = DB::table('barang')->get();
+        $data->supplier = DB::table('supplier')->get();
+        $data->total = 0;
+        $data->date = Carbon::now()->translatedFormat('d F Y');
+        if ($data->list) {
+            foreach ($data->list as $item) {
+                $data->total = $data->total + ($item->harga_beli * $item->jml_beli);
+            }
         }
-
-        $data =  new \stdClass();
-        $data->heads = [ 
-            'ID', 
-            'Nama Barang',
-            'Nama Supplier',
-            'Jumlah Beli',
-            'Harga Beli',
-            'Tanggal Beli',
-            'Total Beli',
-            ['label' => 'Actions', 'no-export' => true, 'width' => 15],
-        ];
-
-        $data->config = [
-            'data' => $dataTables,
-            'columnDefs' => [['targets' => "_all"]],
-            'order' => [[1, 'asc']],
-        ];
-
-        return view('pages.transaksi_pembelian.index', compact('data'));
+        if ($id != null) {
+            $data->edit = DB::table('detail_beli')->where('id_det_beli', $id)->first();
+        }
+        return view('pages.transaksi_pembelian.BeliTransaksi',  compact('data'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function barang_store(Request $request)
     {
-        $data =  new \stdClass();
-        $data->pembelian = Pembelian::all();
-        return view('pages.transaksi_pembelian.create', compact('data'));
+        
+        if (is_null($request['id_det_beli'])) {
+            $cek =  DB::table('detail_beli')->whereNull('id_beli')->where('id_barang', $request->id_barang)->first();
+            $request->request->add(['id_det_beli' => Helper::getCode('detail_beli', 'id_det_beli', 'BD-')]);
+            if($cek){
+                $request->request->add(['id_det_beli' => $cek->id_det_beli]);
+                $request['jml_beli'] = $cek->jml_beli + $request['jml_beli'];
+            }
+            
+        }
+        $save_barang = DB::table('detail_beli')->updateOrInsert(
+            ['id_det_beli' => $request['id_det_beli']],
+            $request->except('_token')
+        );
+
+        return redirect('pembelian/transaksi');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //validasi
-        
-        $this->validate($request, [
-            'id_det_beli' => 'required ',
-            'jml_beli' => 'required ',
-            'harga_beli' => 'required ',
-            'id_barang' => 'required ',
-            'id_beli' => 'required ',
-        ]);
-        $id_det_beli = Helper::getCode('detail_penjualan', 'id_det_beli', 'TPB-');
-        $store = new DetailPenjualan($request->all());
-        $store->id_det_beli = $id_det_beli;
-        $store->save();
-
-        $kas_id = ['kas_id' => Helper::getCode('kas', 'id_kas', 'KAS-')];
-        $kas_save = [
-            'kas_id' => Helper::getCode('kas', 'id_kas', 'KAS-'),
-            'kas_tgl' => $request->tgl_beli,
-            'kas_type' =>'PEMBELIAN',
-            'kas_ket' =>'pembelian',
-            'kas_id_value' =>$id_det_beli,
-            'kas_kredit' =>$request->jml_beli,
-        ];
-        $kas = Kas::updateOrCreate($kas_id, $kas_save);
-        return redirect()->route('transaksi_pembelian.index')
-            ->with('success','Menambah Transaksi Pembelian telah berhasil disimpan');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $data =  new \stdClass();
-        $data->pembelian = Pembelian::all();
-        $data->detailpembelian = DetailPembelian::find($id);
-        if(!$data->detailPembelian){
-            return redirect()->route('transaksi_pembelian.index')
-                ->with('error','Transaksi Pembelian tidak ditemukan');
+        if (is_null($request['id_beli'])) {
+            $request->request->add(['id_beli' => Helper::getCode('pembelian', 'id_beli', 'BL-')]);
         }
-        return view('pages.transaksi_pembelian.edit', compact('data'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        $this->validate($request, [
-            'id_det_beli' => 'required ',
-            'jml_beli' => 'required ',
-            'harga_beli' => 'required ',
-            'id_barang' => 'required ',
-            'id_beli' => 'required ',
-        ]);
-        $update = DetailPembelian::findOrFail($id)->update($request->all());
-        if($update){
-            $kas_id = ['kas_id_value' => $id];
-            $kas_save = [
-                'kas_tgl' => $request->tgl_beli,
-                'kas_type' =>'PEMBELIAN',
-                'kas_ket' =>'pembelian',
-                'kas_kredit' =>$request->jml_beli,
-            ];
-            $kas = Kas::updateOrCreate($kas_id, $kas_save);
+        $request->request->add(['tgl_beli' => Carbon::now()]);
+        $save_beli = DB::table('pembelian')->insert($request->except('_token'));
+        $barang_beli = DB::table('detail_beli')->whereNull('id_beli')->get();
+        foreach($barang_beli as $barang){
+            $get_barang = DB::table('barang')->where('id_barang', $barang->id_barang)->first();
+            $update_stok = DB::table('barang')->where('id_barang', $barang->id_barang)->update(['stok_barang' => $get_barang->stok_barang+$barang->jml_beli]);
         }
-        
-        return redirect()->route('transaksi_pembelian.index')
-        ->with('success','Perubahan Transaksi Pembelian telah berhasil disimpan');
+        $save_barang_beli = DB::table('detail_beli')->whereNull('id_beli')->update(['id_beli' => $request['id_beli']]);
+        $insert['kas_id'] =  Helper::getCode('kas', 'kas_id', 'KS-');
+        $insert['kas_ket'] = 'pembelian';
+        $insert['kas_id_value'] = $request['id_beli'];
+        $insert['kas_kredit'] = $request['total_beli'];
+        $save_kas = DB::table('kas')->insert($insert);
+        return redirect('pembelian/list');
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function barang_delete($id = null)
     {
-        $delete = DetailPembelian::find($id);
-        $delete_kas = Kas::where('kas_id_value', $id);
-        try {
-            $set = $delete->delete();
-            if($set){
-                $delete_kas->delete();
-            }
-        } catch (\Illuminate\Database\QueryException $e) {
-            //menampilkan kesalahan
-            return $e->getMessage();
-        }
+        $delete_barang = DB::table('detail_beli')->where('id_det_beli', $id)->delete();
+        return redirect('pembelian/transaksi');
     }
 }
