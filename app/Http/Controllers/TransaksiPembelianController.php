@@ -9,6 +9,7 @@ use App\Models\Barang;
 use App\Models\DetailPembelian;
 use App\Models\Kas;
 use App\Helpers\Helper;
+use Carbon\Carbon;
 
 class TransaksiPembelianController extends Controller
 {
@@ -22,11 +23,12 @@ class TransaksiPembelianController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function list($id = null)
+    public function index($id = null)
     {
         Session(['saldo' => Helper::saldo()]);
         $data =  new \stdClass();
-        $data->list = DB::table('pembelian')->join('supplier', 'supplier.id_supplier', '=', 'pembelian.id_supplier')->get();
+        $data->list = Pembelian::all();
+        // $data->list = DB::table('pembelian')->join('supplier', 'supplier.id_supplier', '=', 'pembelian.id_supplier')->get();
         return view('pages.transaksi_pembelian.BeliData',  compact('data'));
     }
     
@@ -35,9 +37,10 @@ class TransaksiPembelianController extends Controller
         Session(['saldo' => Helper::saldo()]);
         $data =  new \stdClass();
         $data->edit = null;
-        $data->list = DB::table('detail_beli')->join('barang', 'barang.id_barang', '=', 'detail_beli.id_barang')->whereNull('id_beli')->get();
-        $data->barang = DB::table('barang')->get();
-        $data->supplier = DB::table('supplier')->get();
+        $data->list = [];
+        // $data->list = DB::table('detail_beli')->join('barang', 'barang.id_barang', '=', 'detail_beli.id_barang')->whereNull('id_beli')->get();
+        $data->barang = Barang::all();
+        $data->supplier = supplier::all();
         $data->total = 0;
         $data->date = Carbon::now()->translatedFormat('d F Y');
         if ($data->list) {
@@ -46,7 +49,7 @@ class TransaksiPembelianController extends Controller
             }
         }
         if ($id != null) {
-            $data->edit = DB::table('detail_beli')->where('id_det_beli', $id)->first();
+            // $data->edit = DB::table('detail_beli')->where('id_det_beli', $id)->first();
         }
         return view('pages.transaksi_pembelian.BeliTransaksi',  compact('data'));
     }

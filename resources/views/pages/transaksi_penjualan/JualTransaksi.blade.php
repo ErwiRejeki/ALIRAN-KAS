@@ -7,7 +7,7 @@
             <div class="col-md-8">
                 <div class="card card-primary">
                     <div class="card-header bg-gd-primary">
-                        <h3 class="block-title" style="font-size: 2rem;">Pembelian</h3>
+                        <h3 class="block-title" style="font-size: 2rem;">Penjualan</h3>
                         <div class="block-options">
                             {{$data->date}}
                         </div>
@@ -73,17 +73,6 @@
                                         <div class="form-material floating">
                                             <input type="text" class="form-control text-body-bg-dark" required id="beli_faktur" name="beli_faktur" >
                                             <label for="beli_faktur" class="text-body-bg-dark">Nota</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-sm-6 col-md-6 ">
-                                        <div class="form-material floating">
-                                            <select class="js-select2 form-control select2-text-body-bg-dark" required id="supplier_id" name="supplier_id" style="width: 100%;" >
-                                                <option></option>
-                                                @foreach($data->supplier as $supplier)
-                                                    <option  value="{{$supplier->supplier_id}}"> {{$supplier->supplier_nama}} </option>
-                                                @endforeach
-                                            </select>
-                                            <label for="supplier_id" class="text-body-bg-dark">Supplier</label>
                                         </div>
                                     </div>
                                 </div>

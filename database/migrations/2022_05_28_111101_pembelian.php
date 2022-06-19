@@ -17,6 +17,7 @@ class pembelian extends Migration
             $table->string('id_beli')->primary();
             $table->date('tgl_beli');
             $table->double('total_beli',15);
+            $table->double('total_retur_beli',15)->default(0);
             $table->string('id_supplier');
             $table->foreign('id_supplier')->references('id_supplier')->on('supplier')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamp('created_at')->useCurrent();

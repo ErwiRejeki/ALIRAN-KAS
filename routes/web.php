@@ -37,4 +37,11 @@ use App\Http\Controllers\UserController;
 Route::resource('user', UserController::class);
 
 use App\Http\Controllers\TransaksiPembelianController;
-Route::resource('transaksi_pembelian', TransaksiPembelianController::class);
+Route::get('/transaksi_pembelian', [TransaksiPembelianController::class, 'index'])->name('pembelian');
+Route::get('/transaksi_pembelian/transaksi/{id?}', [TransaksiPembelianController::class, 'transaksi'])->name('pembelian');
+// Route::get('transaksi_pembelian', TransaksiPembelianController::class);
+
+use App\Http\Controllers\TransaksiPenjualanController;
+Route::get('/transaksi_penjualan', [TransaksiPenjualanController::class, 'index'])->name('penjualan');
+Route::get('/transaksi_penjualan/transaksi/{id?}', [TransaksiPenjualanController::class, 'transaksi'])->name('penjualan');
+// Route::get('transaksi_pembelian', TransaksiPembelianController::class);
