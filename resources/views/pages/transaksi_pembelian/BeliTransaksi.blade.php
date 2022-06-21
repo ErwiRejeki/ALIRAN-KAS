@@ -1,11 +1,16 @@
 @extends('adminlte::page')
 @section('title')Transaksi Pembelian @endsection
 @section('content')
-    <div class="col-md-12">
-        <div class="row row-deck gutters-tiny">
+    <div class="col-md-12 pt-3">
+    @if ($message = Session::get('error'))
+    <x-adminlte-alert theme="danger" title="Danger">
+        {{ $message }}
+    </x-adminlte-alert>
+    @endif
+        <div class="row">
             <!-- Billing Address -->
             <div class="col-md-8">
-                <div class="card card-primary">
+                <div class="card card-primary mb-0">
                     <div class="card-header bg-gd-primary">
                         <h3 class="block-title" style="font-size: 2rem;">Pembelian</h3>
                         <div class="block-options">
@@ -13,31 +18,31 @@
                         </div>
                     </div>
 
-                    <div class="card-body">
-                        <form  method="post" > @csrf
+                    <div class="card-body ">
+                        <form action="{{route('pembelian.barang_store')}}"  method="post" > @csrf
                             <div class="form-group row">
-                                <div class="col-12 col-sm-6 col-md-12">
+                                <div class="col-12 col-sm-6 col-md-12 mb-3">
                                     <div class="form-material">
+                                        <label for="id_barang">Kode Barang</label>
                                         <input type="hidden" class="form-control" id="id_det_beli" name="id_det_beli"  value="@php echo ($data->edit) ? $data->edit->id_det_beli: ''; @endphp">
                                         <select onchange="getharga(this, 'detail_beli')" class="js-select2 form-control" id="id_barang" name="id_barang" required style="width: 100%;" >
                                             <option>--Pilih Data--</option>
                                             @foreach($data->barang as $barang)
-                                            <option harga="{{$barang->harga_beli}}" value="{{$barang->id_barang}}" @php echo ($data->edit) ? ($data->edit->id_barang == $barang->id_barang) ? 'selected': '' : null; @endphp>{{$barang->id_barang}} [ {{$barang->nama_barang}} ]</option>
+                                            <option harga="{{$barang->harga_beli_barang}}" value="{{$barang->id_barang}}" @php echo ($data->edit) ? ($data->edit->id_barang == $barang->id_barang) ? 'selected': '' : null; @endphp>{{$barang->id_barang}} [ {{$barang->nama_barang}} ]</option>
                                             @endforeach
                                         </select>
-                                        <label for="id_barang">Kode Barang</label>
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-6 col-md-6">
                                     <div class="form-material">
-                                        <input type="number" readonly class="form-control" id="beli_detail_harga" value="@php echo ($data->edit) ? $data->edit->beli_detail_harga: ''; @endphp" name="beli_detail_harga" required >
-                                        <label for="beli_detail_harga">Harga Barang</label>
+                                        <label for="harga_beli">Harga Barang</label>
+                                        <input type="number" readonly class="form-control" id="harga_beli" value="@php echo ($data->edit) ? $data->edit->harga_beli: ''; @endphp" name="harga_beli" required >
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-6 col-md-6">
                                     <div class="form-material">
-                                        <input type="number" min="0" step="0.1" class="form-control" id="beli_detail_jml" value="@php echo ($data->edit) ? $data->edit->beli_detail_jml: ''; @endphp" name="beli_detail_jml" required >
-                                        <label for="beli_detail_jml">Jumlah</label>
+                                        <label for="jml_beli">Jumlah</label>
+                                        <input type="number" min="0" step="0.1" class="form-control" id="jml_beli" value="@php echo ($data->edit) ? $data->edit->jml_beli: ''; @endphp" name="jml_beli" required >
                                     </div>
                                 </div>
                             </div>
@@ -45,10 +50,10 @@
                             <div class="dropdown-divider"></div>
                             <div class="form-group row">
                                 <div class="col-12">
-                                    <button type="submit" class="btn btn-alt-primary">
+                                    <button type="submit" class="btn btn-primary">
                                         <i class="fa fa-plus"></i> Tambah Barang
                                     </button>
-                                    <button type="reset" class="btn btn-alt-secondary">
+                                    <button type="reset" class="btn btn-secondary">
                                         <i class="fa fa-minus"></i> Reset
                                     </button>
                                 </div>
@@ -64,26 +69,25 @@
 
                     <div class="card card-secondary h-100" >
                         <div class="card-header block-content-full h-100" >
-                            <span class="text-body-bg-dark font-w700 d-flex justify-content-center text-uppercase">Selesaikan Transaksi</span>
-                            <form method="post" > @csrf
-{{--                                <input type="hidden" class="form-control" id="beli_id" name="beli_id" >--}}
-                                <input type="hidden" class="form-control" id="beli_total" name="beli_total" value="{{$data->total}}">
+                            <span class="text-body-bg-dark font-w700 d-flex justify-content-center text-uppercase mb-5">Selesaikan Transaksi</span>
+                            <form method="post" action="{{route('pembelian.store')}}" > @csrf
+                                <input type="hidden" class="form-control" id="total_beli" name="total_beli" value="{{$data->total}}">
                                 <div class="form-group row">
                                     <div class="col-12 col-sm-6 col-md-6 ">
                                         <div class="form-material floating">
-                                            <input type="text" class="form-control text-body-bg-dark" required id="beli_faktur" name="beli_faktur" >
-                                            <label for="beli_faktur" class="text-body-bg-dark">Nota</label>
+                                            <label for="faktur_beli" class="text-body-bg-dark">Nota</label>
+                                            <input type="text" class="form-control text-body-bg-dark" required id="faktur_beli" name="faktur_beli" >
                                         </div>
                                     </div>
                                     <div class="col-12 col-sm-6 col-md-6 ">
                                         <div class="form-material floating">
-                                            <select class="js-select2 form-control select2-text-body-bg-dark" required id="supplier_id" name="supplier_id" style="width: 100%;" >
+                                            <label for="id_supplier" class="text-body-bg-dark">Supplier</label>
+                                            <select class="js-select2 form-control select2-text-body-bg-dark" required id="id_supplier" name="id_supplier" style="width: 100%;" >
                                                 <option></option>
                                                 @foreach($data->supplier as $supplier)
-                                                    <option  value="{{$supplier->supplier_id}}"> {{$supplier->supplier_nama}} </option>
+                                                    <option  value="{{$supplier->id_supplier}}"> {{$supplier->nama_supplier}} </option>
                                                 @endforeach
                                             </select>
-                                            <label for="supplier_id" class="text-body-bg-dark">Supplier</label>
                                         </div>
                                     </div>
                                 </div>
@@ -91,7 +95,7 @@
                             <div class="d-flex justify-content-center font-size-h3 font-w700 text-white-op">@rp($data->total)</div>
                             <div class="col-12 d-flex justify-content-center">
                                 <button type="submit"  @if($data->total==0) {{'disabled'}} @endif class="d-flex justify-content-center btn btn-success">
-                                    <i class="fa fa-paypal "></i> Bayar
+                                    Bayar
                                 </button>
                             </div>
                             </form>
@@ -101,8 +105,8 @@
             </div>
             <!-- END Shipping Address -->
         </div>
-        <div class="block block-themed block-rounded">
-            <div class="block-header bg-gd-primary">
+        <div class="card mt-5 block-themed block-rounded ">
+            <div class="card-header">
                 <h3 class="block-title" style="font-size: 2rem;">Barang</h3>
             </div>
             <div class="block-content">
@@ -123,17 +127,17 @@
                         @foreach($data->list as $list)
                         <tr>
                             <td class="font-w600 text-center">{{$no}}</td>
-                            <td class="font-w600 text-uppercase text-primary">{{$list->barang_nama}} </td>
-                            <td class="text-center">{{$list->beli_detail_jml}}</td>
-                            <td class="text-right">@rp($list->beli_detail_harga)</td>
-                            <td class="text-right">@rp($list->beli_detail_harga*$list->beli_detail_jml)</td>
+                            <td class="font-w600 text-uppercase text-primary">{{$list->get_barang->nama_barang}} </td>
+                            <td class="text-center">{{$list->jml_beli}}</td>
+                            <td class="text-right">@rp($list->harga_beli)</td>
+                            <td class="text-right">@rp($list->harga_beli*$list->jml_beli)</td>
                             <td class="text-center table-secondary">
                                 <div class="btn-group">
-                                    <a href="{{ route('beli.transaksi',[$list->beli_detail_id]) }}" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Edit">
-                                        <i class="fa fa-pencil"></i>
+                                    <a href="{{ route('pembelian.transaksi',[$list->id_det_beli]) }}" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Edit">
+                                        <i class="fa fa-edit"></i>
                                     </a>
-                                    <a class="btn btn-sm btn-danger" data-toggle="confirmation" data-popout="true" data-title="Hapus Data ini?"
-                                       href="{{ route('pembelian.barang_delete',[$list->beli_detail_id]) }}" ><i class="fa fa-times"></i></a>
+                                    @php $link = route('pembelian.barang_delete') @endphp
+                                    <a class="btn btn-sm btn-danger" onclick="deleteData('{{$list->id_det_beli}}', '{{$link}}')"><i class="fa fa-trash"></i></a>
                                 </div>
                             </td>
                         </tr>

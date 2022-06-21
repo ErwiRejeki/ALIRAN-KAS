@@ -49,6 +49,30 @@
 @section('adminlte_js')
     @stack('js')
     <script>
+        $('#table_custome').DataTable({
+            "paging": true,
+            "lengthChange": true,
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Indonesian.json"
+            }
+        });
+        var saldo = @php echo(Session::get('saldo'));@endphp;
+        function getharga(sel, param) {
+            let harga = $("#id_barang option:selected").attr('harga');
+            if (param == 'detail_beli') {
+                $("#harga_beli").val(harga);
+                let max = parseInt((saldo - total) / harga);
+                // document.getElementById('jml_beli').max = max;
+            }else if(param == 'jual_detail'){
+                let max = $("#id_barang option:selected").attr('stok');
+                document.getElementById('jual_detail_jml').max = max;
+            }
+        }
         function deleteData(id, url) {
             Swal.fire({
                 title: 'Are you sure?',
@@ -70,7 +94,7 @@
                         success: function(result) {
                             Swal.fire(
                                 'Deleted!',
-                                'Your file has been deleted.',
+                                'Your data has been deleted.',
                                 'success'
                             ).then((result) => {
                                 location.reload();

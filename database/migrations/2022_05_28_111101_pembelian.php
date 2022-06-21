@@ -15,6 +15,7 @@ class pembelian extends Migration
     {
         Schema::create('pembelian', function (Blueprint $table) {
             $table->string('id_beli')->primary();
+            $table->string('faktur_beli');
             $table->date('tgl_beli');
             $table->double('total_beli',15);
             $table->double('total_retur_beli',15)->default(0);

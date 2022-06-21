@@ -38,10 +38,16 @@ Route::resource('user', UserController::class);
 
 use App\Http\Controllers\TransaksiPembelianController;
 Route::get('/transaksi_pembelian', [TransaksiPembelianController::class, 'index'])->name('pembelian');
-Route::get('/transaksi_pembelian/transaksi/{id?}', [TransaksiPembelianController::class, 'transaksi'])->name('pembelian');
+Route::get('/transaksi_pembelian/transaksi/{id?}', [TransaksiPembelianController::class, 'transaksi'])->name('pembelian.transaksi');
+Route::get('/transaksi_pembelian/faktur/{id}/{type}/{retur?}', [TransaksiPembelianController::class, 'faktur'])->name('pembelian.faktur');
+Route::post('/transaksi_pembelian/barang_store', [TransaksiPembelianController::class, 'barang_store'])->name('pembelian.barang_store');
+Route::post('/transaksi_pembelian/store', [TransaksiPembelianController::class, 'store'])->name('pembelian.store');
+Route::post('/transaksi_pembelian/faktur_store', [TransaksiPembelianController::class, 'faktur_store'])->name('pembelian.faktur_store');
+Route::delete('/transaksi_pembelian/barang_delete', [TransaksiPembelianController::class, 'barang_delete'])->name('pembelian.barang_delete');
 // Route::get('transaksi_pembelian', TransaksiPembelianController::class);
 
 use App\Http\Controllers\TransaksiPenjualanController;
 Route::get('/transaksi_penjualan', [TransaksiPenjualanController::class, 'index'])->name('penjualan');
-Route::get('/transaksi_penjualan/transaksi/{id?}', [TransaksiPenjualanController::class, 'transaksi'])->name('penjualan');
+Route::get('/transaksi_penjualan/transaksi/{id?}', [TransaksiPenjualanController::class, 'transaksi'])->name('penjualan.transaksi');
+Route::post('/transaksi_penjualan/barang_store', [TransaksiPenjualanController::class, 'barang_store'])->name('penjualan.barang_store');
 // Route::get('transaksi_pembelian', TransaksiPembelianController::class);
