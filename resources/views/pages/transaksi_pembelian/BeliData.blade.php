@@ -27,11 +27,12 @@
                             <th class="text-right">Total</th>
                         </tr>
                         </thead>
+                        @php $no=1; @endphp
                         @foreach ($data->list as $list)
                         <tbody>
                             <tr>
                                 <td class="text-center font-w600 text-secondary text-uppercase">
-                                   1
+                                   {{$no}}
                                 </td>
                                 <td class="text-center font-w600 text-secondary text-uppercase">
                                     <a href="{{ route('pembelian.faktur',[$list->id_beli, 'faktur']) }}">{{$list->faktur_beli}}</a>
@@ -53,7 +54,7 @@
                                 </td>
                             </tr>
                         </tbody>
-                        @endforeach
+                        @php $no++; @endphp @endforeach
                     </table>
                 </div>
                 <!-- END Orders Table -->

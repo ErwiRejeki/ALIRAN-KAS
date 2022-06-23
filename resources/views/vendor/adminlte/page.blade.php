@@ -68,10 +68,23 @@
                 $("#harga_beli").val(harga);
                 let max = parseInt((saldo - total) / harga);
                 // document.getElementById('jml_beli').max = max;
-            }else if(param == 'jual_detail'){
+            }else if(param == 'detail_jual'){
+                $("#harga_jual").val(harga);
                 let max = $("#id_barang option:selected").attr('stok');
-                document.getElementById('jual_detail_jml').max = max;
+                let harga_beli = $("#id_barang option:selected").attr('harga_beli');
+                document.getElementById('jml_jual').max = max;
+                document.getElementById('harga_jual').min = harga_beli;
             }
+        }
+        function enableHarga(){
+            let jml = document.getElementById('jml_jual').value;
+            console.log('jml', jml)
+            if(jml > 10) {
+                $("#harga_jual").attr('readonly', false);
+            }else{
+                $("#harga_jual").attr('readonly', true);
+            }
+            
         }
         function deleteData(id, url) {
             Swal.fire({

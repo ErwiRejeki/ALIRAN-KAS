@@ -30,7 +30,6 @@ class TransaksiPembelianController extends Controller
         Session(['saldo' => Helper::saldo()]);
         $data =  new \stdClass();
         $data->list = Pembelian::with('get_supplier')->get();
-        // $data->list = DB::table('pembelian')->join('supplier', 'supplier.id_supplier', '=', 'pembelian.id_supplier')->get();
         return view('pages.transaksi_pembelian.BeliData',  compact('data'));
     }
     
@@ -180,8 +179,7 @@ class TransaksiPembelianController extends Controller
             return redirect("transaksi_pembelian/faktur/" . $request['id_beli'] . "/retur")->with('success', 'Retur Pembelian berhasil disimpan');
         } catch (\Exception $e) {
             DB::rollBack();
-            return redirect("transaksi_pembelian/faktur/" . $request['id_beli'] . "/retur/".$request['id_retur_beli'])->with('error', $e->getMessage());
-            // return redirect("transaksi_pembelian/faktur/" . $request['id_beli'] . "/retur")->with('error', 'Gagal Menyimpan Data');
+            return redirect("transaksi_pembelian/faktur/" . $request['id_beli'] . "/retur/".$request['id_retur_beli'])->with('error', 'Gagal Menyimpan Data');
         }
     }
 }

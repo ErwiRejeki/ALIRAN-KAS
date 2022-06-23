@@ -49,5 +49,9 @@ Route::delete('/transaksi_pembelian/barang_delete', [TransaksiPembelianControlle
 use App\Http\Controllers\TransaksiPenjualanController;
 Route::get('/transaksi_penjualan', [TransaksiPenjualanController::class, 'index'])->name('penjualan');
 Route::get('/transaksi_penjualan/transaksi/{id?}', [TransaksiPenjualanController::class, 'transaksi'])->name('penjualan.transaksi');
+Route::get('/transaksi_penjualan/faktur/{id}/{type}/{retur?}', [TransaksiPenjualanController::class, 'faktur'])->name('penjualan.faktur');
 Route::post('/transaksi_penjualan/barang_store', [TransaksiPenjualanController::class, 'barang_store'])->name('penjualan.barang_store');
+Route::post('/transaksi_penjualan/store', [TransaksiPenjualanController::class, 'store'])->name('penjualan.store');
+Route::post('/transaksi_penjualan/faktur_store', [TransaksiPenjualanController::class, 'faktur_store'])->name('penjualan.faktur_store');
+Route::delete('/transaksi_penjualan/barang_delete', [TransaksiPenjualanController::class, 'barang_delete'])->name('penjualan.barang_delete');
 // Route::get('transaksi_pembelian', TransaksiPembelianController::class);

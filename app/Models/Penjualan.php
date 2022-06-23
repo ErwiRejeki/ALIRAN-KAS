@@ -12,6 +12,6 @@ class Penjualan extends Model
     protected $primaryKey = 'id_jual';
     public $incrementing = false;
     protected $fillable = [
-        'id_jual', 'tgl_jual','total_jual'
+        'id_jual', 'tgl_jual','total_jual', 'total_retur_jual'
     ];
 }
