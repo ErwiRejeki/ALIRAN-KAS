@@ -304,12 +304,12 @@ return [
             'submenu' => [
                 [
                     'text' => 'Penerimaan Kas',
-                    'url'  => 'admin/settings',
+                    'url'  => 'jurnal/jpenerimaankas',
                     'icon' => 'fas fa-fw fa-lock',
                 ],
                 [
                     'text' => 'Pengeluaran Kas',
-                    'url'  => 'admin/settings',
+                    'url'  => 'jurnal/jpengeluarankas',
                     'icon' => 'fas fa-fw fa-lock',
                 ],
             ],
@@ -321,27 +321,32 @@ return [
             'submenu' => [
                 [
                     'text' => 'Pembelian',
-                    'url'  => 'admin/settings',
+                    'url'  => 'laporan/lpembelian',
+                    'icon' => 'fas fa-fw fa-lock',
+                ],
+                [
+                    'text' => 'Penjualan',
+                    'url'  => 'laporan/lpenjualan',
                     'icon' => 'fas fa-fw fa-lock',
                 ],
                 [
                     'text' => 'Pengeluaran Kas',
-                    'url'  => 'admin/settings',
+                    'url'  => 'laporan/lpengeluarankas',
                     'icon' => 'fas fa-fw fa-lock',
                 ],
                 [
                     'text' => 'Penerimaan Kas',
-                    'url'  => 'admin/settings',
+                    'url'  => 'laporan/lpenerimaankas',
                     'icon' => 'fas fa-fw fa-lock',
                 ],
                 [
                     'text' => 'Buku Besar Kas',
-                    'url'  => 'admin/settings',
+                    'url'  => 'laporan/lbukubesarkas',
                     'icon' => 'fas fa-fw fa-lock',
                 ],
                 [
                     'text' => 'Cash Flow',
-                    'url'  => 'admin/settings',
+                    'url'  => 'laporan/laruskas',
                     'icon' => 'fas fa-fw fa-lock',
                 ],
             ],
