@@ -85,9 +85,9 @@ class TransaksiBiayaController extends Controller
         $store->id_det_biaya = $id_det_biaya;
         $store->save();
 
-        $kas_id = ['kas_id' => Helper::getCode('kas', 'id_kas', 'KAS-')];
+        $kas_id = ['kas_id' => Helper::getCode('kas', 'kas_id', 'KAS-')];
         $kas_save = [
-            'kas_id' => Helper::getCode('kas', 'id_kas', 'KAS-'),
+            'kas_id' => Helper::getCode('kas', 'kas_id', 'KAS-'),
             'kas_tgl' => $request->tgl_biaya,
             'kas_type' =>'BIAYA',
             'kas_ket' =>'biaya',

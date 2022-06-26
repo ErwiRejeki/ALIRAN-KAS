@@ -1,16 +1,16 @@
-@extends('layouts.app')
+@extends('adminlte::page')
 @section('title')Laporan Penerimaan Kas @endsection
 @section('content')
-    <div class="col-md-12">
-        <div class="block block-themed block-rounded">
-            <div class="block-header bg-gd-primary">
+    <div class="col-md-12 pt-3">
+        <div class="card card-primary block-themed block-rounded">
+            <div class="card-header bg-gd-primary">
                 <h3 class="block-title" style="font-size: 2rem;">Laporan Penerimaan Kas</h3>
                 <btn class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#modal-fromleft">Periode</btn>
                 <btn class="btn btn-secondary btn-sm" onclick="printDiv('print')">Print</btn>
             </div>
             <div id="print" class="block-content">
                 <div class="font-w600 text-uppercase text-center">Laporan Penerimaan Kas per periode</div>
-                <div class="font-w600 text-uppercase text-center">pada toko ida</div>
+                <div class="font-w600 text-uppercase text-center">pada toko Sumber Rejeki</div>
                 <div class="font-w600 text-uppercase text-center">periode @date($data->startdate) s.d @date($data->enddate)</div><br/>
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped">
@@ -23,11 +23,11 @@
                         </thead>
                         <tbody>
                         @php $no=1; @endphp
-                        @foreach($data->list as $list)
+                        @foreach($data->fix as $list)
                             <tr>
                                 <td class="font-w600 text-center">@date($list->kas_tgl)</td>
                                 <td class="text-center font-w600 text-uppercase ">
-                                    {{$list->kas_id_value}}
+                                    {{$list->nobuk}}
                                 </td>
                                 <td class="text-right">@rp($list->kas_debet)</td>
                             </tr>
@@ -52,35 +52,30 @@
         <div class="modal-dialog modal-dialog-fromleft" role="document">
             <div class="modal-content">
                 <form action="{{ route('laporan.lpenerimaankas') }}" method="get" >
-                    <div class="block block-themed block-transparent mb-0">
-                        <div class="block-header bg-primary">
+                    <div class="card card-primary block-transparent mb-0">
+                        <div class="card-header bg-primary">
                             <h3 class="block-title">Periode Laporan</h3>
-                            <div class="block-options">
-                                <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
-                                    <i class="si si-close"></i>
-                                </button>
-                            </div>
                         </div>
-                        <div class="block-content">
+                        <div class="card-body">
                             <div class="form-group row">
                                 <div class="col-6">
                                     <div class="form-material">
+                                        <label for="startdate">Mulai</label>
                                         <input type="date" class="form-control" id="startdate" value="{{$data->startdate}}" name="startdate">
-                                        <label for="startdate">Mulsi</label>
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="form-material">
-                                        <input type="date" class="form-control" id="enddate" value="{{$data->enddate}}" name="enddate">
                                         <label for="enddate">Akhir</label>
+                                        <input type="date" class="form-control" id="enddate" value="{{$data->enddate}}" name="enddate">
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-alt-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-alt-success" >
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-success" >
                             <i class="fa fa-check"></i> Ubah
                         </button>
                     </div>

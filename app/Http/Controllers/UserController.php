@@ -28,7 +28,6 @@ class UserController extends Controller
                 $item->name,
                 $item->jabatan,
                 $item->email,
-                $item->password,
                 Helper::btnEdit('/user/' . $item->id . '/edit') . Helper::btnDelete("deleteData('$item->id', '$deleteLink')") 
             ];
         }
@@ -39,14 +38,13 @@ class UserController extends Controller
             'Name',
             ['label' => 'Jabatan'],
             ['label' => 'Email'],
-            ['label' => 'Password'],
             ['label' => 'Actions', 'no-export' => true, 'width' => 15],
         ];
 
         $data->config = [
             'data' => $dataTables,
+            'columnDefs' => [['targets' => "_all"]],
             'order' => [[1, 'asc']],
-            'columns' => [null, null, null, null, null, ['orderable' => false]],
         ];
 
         return view('pages.user.index', compact('data'));
@@ -125,7 +123,6 @@ class UserController extends Controller
             'name' => 'required ',
             'jabatan' => 'required ',
             'email' => 'required ',
-            'password' => 'required ',
         ]);
         $update = User::findOrFail($id)->update($request->all());
         return redirect()->route('user.index')

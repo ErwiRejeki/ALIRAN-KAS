@@ -1,15 +1,15 @@
 @extends('adminlte::page')
-@section('title')Laporan Pengeluaran Kas @endsection
+@section('title')Laporan Penjualan @endsection
 @section('content')
     <div class="col-md-12 pt-3">
-        <div class="card card-primary block-themed block-rounded">
+        <div class="card card-primary block-rounded">
             <div class="card-header bg-gd-primary">
-                <h3 class="block-title" style="font-size: 2rem;">Laporan Pengeluaran Kas</h3>
+                <h3 class="block-title" style="font-size: 2rem;">Laporan Penjualan</h3>
                 <btn class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#modal-fromleft">Periode</btn>
                 <btn class="btn btn-secondary btn-sm" onclick="printDiv('print')">Print</btn>
             </div>
             <div id="print" class="block-content">
-                <div class="font-w600 text-uppercase text-center">Laporan Pengeluaran Kas per periode</div>
+                <div class="font-w600 text-uppercase text-center">Laporan Penjualan per periode</div>
                 <div class="font-w600 text-uppercase text-center">pada toko Sumber Rejeki</div>
                 <div class="font-w600 text-uppercase text-center">periode @date($data->startdate) s.d @date($data->enddate)</div><br/>
                 <div class="table-responsive">
@@ -23,18 +23,18 @@
                         </thead>
                         <tbody>
                         @php $no=1; @endphp
-                        @foreach($data->fix as $list)
+                        @foreach($data->list as $list)
                             <tr>
                                 <td class="font-w600 text-center">@date($list->kas_tgl)</td>
                                 <td class="text-center font-w600 text-uppercase ">
-                                    {{$list->nobuk}}
+                                    <a href="{{ route('penjualan.faktur',[$list->kas_id_value, 'faktur']) }}">{{$list->kas_id_value}}</a>
                                 </td>
-                                <td class="text-right">@rp($list->kas_kredit)</td>
+                                <td class="text-right">@rp($list->kas_debet)</td>
                             </tr>
                             @php $no++; @endphp @endforeach
                         @if($data->total==0)
                             <tr class="table-secondary">
-                                <td colspan="6" class="text-left font-w600 text-uppercase">Data Kosong</td>
+                                <td colspan="3" class="text-left font-w600 text-uppercase">Data Kosong</td>
                             </tr>
                         @else
                             <tr class="table-secondary">
@@ -51,7 +51,7 @@
     <div class="modal fade" id="modal-fromleft" tabindex="-1" role="dialog" aria-labelledby="modal-fromleft" aria-hidden="true">
         <div class="modal-dialog modal-dialog-fromleft" role="document">
             <div class="modal-content">
-                <form action="{{ route('laporan.lpengeluarankas') }}" method="get" >
+                <form action="{{ route('laporan.lpenjualan') }}" method="get" >
                     <div class="card card-primary block-transparent mb-0">
                         <div class="card-header bg-primary">
                             <h3 class="block-title">Periode Laporan</h3>

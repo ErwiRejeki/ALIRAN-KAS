@@ -58,14 +58,15 @@ Route::delete('/transaksi_penjualan/barang_delete', [TransaksiPenjualanControlle
 
 use App\Http\Controllers\JurnalController;
 Route::get('/jurnal/jpenerimaankas', [JurnalController::class, 'jpenerimaankas'])->name('jurnal.jpenerimaankas');
-Route::get('/jurnal/jpembelian', [JurnalController::class, 'jpembelian'])->name('jurnal.jpembelian');
-Route::get('/jurnal/jpenjualan', [JurnalController::class, 'jpenjualan'])->name('jurnal.jpenjualan');
 Route::get('/jurnal/jpengeluarankas', [JurnalController::class, 'jpengeluarankas'])->name('jurnal.jpengeluarankas');
 
 use App\Http\Controllers\LaporanController;
 Route::get('/laporan/lpembelian', [LaporanController::class, 'lpembelian'])->name('laporan.lpembelian');
-Route::get('/laporan/lpenjualan', [LaporanController::class, 'lpenjualan'])->name('laporan.lpembelian');
+Route::get('/laporan/lpenjualan', [LaporanController::class, 'lpenjualan'])->name('laporan.lpenjualan');
 Route::get('/laporan/lpenerimaankas',[LaporanController::class, 'lpenerimaankas'])->name('laporan.lpenerimaankas');
 Route::get('/laporan/lpengeluarankas',[LaporanController::class, 'lpengeluarankas'])->name('laporan.lpengeluarankas');
 Route::get('/laporan/lbukubesarkas', [LaporanController::class, 'lbukubesarkas'])->name('laporan.lbukubesarkas');
 Route::get('/laporan/laruskas', [LaporanController::class, 'laruskas'])->name('laporan.laruskas');
+
+use App\Http\Controllers\SaldoController;
+Route::post('/saldo/store', [SaldoController::class, 'store'])->name('saldo.store');

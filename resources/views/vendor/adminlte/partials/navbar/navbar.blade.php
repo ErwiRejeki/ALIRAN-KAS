@@ -12,6 +12,13 @@
 
         {{-- Custom left links --}}
         @yield('content_top_nav_left')
+
+        <button type="button" class="btn btn-success mr-2" >
+        <i class="fa fa-info"></i> Saldo @rp(Session::get('saldo'))
+        </button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-saldo">
+            <i class="fa fa-plus"></i> Tambah Saldo
+        </button>
     </ul>
 
     {{-- Navbar right links --}}

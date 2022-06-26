@@ -25,16 +25,44 @@ class LaporanController extends Controller
         }
         return view('pages.laporan.LPembelian',  compact('data'));
     }
+    public function lpenjualan(Request $request)
+    {
+        $data =  new \stdClass();
+        $data->enddate = ($request->enddate) ? $request->enddate : Carbon::now()->endOfMonth()->format('Y-m-d');
+        $data->startdate = ($request->startdate) ? $request->startdate : Carbon::now()->startOfMonth()->format('Y-m-d');
+        $data->total = 0;
+        $data->list = DB::table('kas')->where('kas_ket', 'penjualan')->whereBetween('kas_tgl', [$data->startdate, $data->enddate])->orderby('kas_tgl', 'asc')->get();
+        //        dd($data->list);
+        if ($data->list) {
+            foreach ($data->list as $item) {
+                $data->total = $data->total + $item->kas_debet;
+            }
+        }
+        return view('pages.laporan.LPenjualan',  compact('data'));
+    }
     public function lpenerimaankas(Request $request)
     {
         $data =  new \stdClass();
         $data->enddate = ($request->enddate) ? $request->enddate : Carbon::now()->endOfMonth()->format('Y-m-d');
         $data->startdate = ($request->startdate) ? $request->startdate : Carbon::now()->startOfMonth()->format('Y-m-d');
         $data->total = 0;
-        $data->list = DB::table('kas')->wherein('kas_ket', ['penjualan', 'retur_penjualan'])->whereBetween('kas_tgl', [$data->startdate, $data->enddate])->orderby('kas_tgl', 'asc')->get();
-        //        dd($data->list);
+        $data->list = DB::table('kas')->wherein('kas_ket', ['penjualan', 'retur pembelian'])->whereBetween('kas_tgl', [$data->startdate, $data->enddate])->orderby('kas_tgl', 'asc')->get();
+        $data->beli = DB::table('kas')->where('kas_ket', 'retur pembelian')->join('pembelian', 'id_beli', '=', 'kas_id_value')->get();
+        $data->fix = array();
         if ($data->list) {
             foreach ($data->list as $item) {
+                $object =  new \stdClass();
+                $object = $item;
+                if ($item->kas_ket == 'retur pembelian') {
+                    foreach ($data->beli as $value) {
+                        if ($value->id_beli == $item->kas_id_value) {
+                            $object->nobuk = $value->faktur_beli;
+                        }
+                    }
+                } else {
+                    $object->nobuk = $item->kas_id_value;
+                }
+                array_push($data->fix, $object);
                 $data->total = $data->total + $item->kas_debet;
             }
         }
@@ -46,7 +74,7 @@ class LaporanController extends Controller
         $data->enddate = ($request->enddate) ? $request->enddate : Carbon::now()->endOfMonth()->format('Y-m-d');
         $data->startdate = ($request->startdate) ? $request->startdate : Carbon::now()->startOfMonth()->format('Y-m-d');
         $data->total = 0;
-        $data->list = DB::table('kas')->wherein('kas_ket', ['pembelian', 'biaya'])->whereBetween('kas_tgl', [$data->startdate, $data->enddate])->orderby('kas_tgl', 'asc')->get();
+        $data->list = DB::table('kas')->wherein('kas_ket', ['pembelian', 'biaya', 'retur penjualan'])->whereBetween('kas_tgl', [$data->startdate, $data->enddate])->orderby('kas_tgl', 'asc')->get();
         $data->beli = DB::table('kas')->where('kas_ket', 'pembelian')->join('pembelian', 'id_beli', '=', 'kas_id_value')->get();
         $data->fix = array();
         if ($data->list) {
@@ -55,14 +83,12 @@ class LaporanController extends Controller
                 $object = $item;
                 if ($item->kas_ket == 'pembelian') {
                     foreach ($data->beli as $value) {
-                        if ($value->beli_id == $item->kas_id_value) {
-                            $object->nobuk = $value->beli_faktur;
-                            $object->keterangan = 'Pembelian';
+                        if ($value->id_beli == $item->kas_id_value) {
+                            $object->nobuk = $value->faktur_beli;
                         }
                     }
                 } else {
                     $object->nobuk = $item->kas_id_value;
-                    $object->keterangan = 'Biaya';
                 }
                 array_push($data->fix, $object);
                 $data->total = $data->total + $item->kas_kredit;
