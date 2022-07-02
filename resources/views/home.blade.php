@@ -1,16 +1,22 @@
 @extends('adminlte::page')
-@section('title', 'AAK')
+@section('title', 'Aliran-Kas Sumber Rejeki')
 @section('content_header')
     
-Selamat Datang
+
 
 @stop
-
 @section('content')
-    
-Aplikasi Aliran Kas pada Toko Sumber Rejeki
-
-
+    <center>
+        <div class="block">
+            <div class="block-header block-header-default">
+                <h3 class="block-title" style="font-size: 2rem;">Selamat Datang</h3>
+            </div>
+            <div class="block-content">
+                <h2 class="block-title" style="font-size: 2rem;">Aplikasi Aliran Kas pada Toko Sumber Rejeki</h2>
+                <p></p>
+            </div>
+        </div>
+    </center>
 @stop
 
 @section('css')

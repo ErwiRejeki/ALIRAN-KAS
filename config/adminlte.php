@@ -249,11 +249,12 @@ return [
         [
             'text'        => 'Home',
             'url'         => 'home',
-            'icon'        => 'far fa-fw fa-file',
+            'icon'        => 'fa-dashboard',
             'label_color' => 'success',
         ],
         [
             'text'    => 'MASTER',
+            'icon'    => 'fas fa-database',
             'submenu' => [
                 [
                     'text' => 'Barang',
@@ -279,75 +280,75 @@ return [
         ],
         [
             'text'    => 'TRANSAKSI',
-            'icon'    => 'fas fa-fw fa-share',
+            'icon'    => 'fas fa-archive',
             'submenu' => [
                 [
                     'text' => 'Penjualan',
                     'url'  => 'transaksi_penjualan',
-                    'icon' => 'fas fa-fw fa-lock',
+                    'icon' => 'fa fa-cart-arrow-down',
                 ],
                 [
                     'text' => 'Pembelian',
                     'url'  => 'transaksi_pembelian',
-                    'icon' => 'fas fa-fw fa-lock',
+                    'icon' => 'fa fa-cart-plus',
                 ],
                 [
                     'text' => 'Biaya',
                     'url'  => 'transaksi_biaya',
-                    'icon' => 'fas fa-fw fa-lock',
+                    'icon' => 'fa fa-edit',
                 ],
             ],
         ],
         [
             'text'    => 'JURNAL',
-            'icon'    => 'fas fa-fw fa-share',
+            'icon'    => 'fas fa-journal-whills',
             'submenu' => [
                 [
                     'text' => 'Penerimaan Kas',
                     'url'  => 'jurnal/jpenerimaankas',
-                    'icon' => 'fas fa-fw fa-lock',
+                    'icon' => 'fas fa-newspaper-o',
                 ],
                 [
                     'text' => 'Pengeluaran Kas',
                     'url'  => 'jurnal/jpengeluarankas',
-                    'icon' => 'fas fa-fw fa-lock',
+                    'icon' => 'fas fa-newspaper-o',
                 ],
             ],
         ],
         
         [
             'text'    => 'LAPORAN',
-            'icon'    => 'fas fa-fw fa-share',
+            'icon'    => 'fas fa-file',
             'submenu' => [
                 [
                     'text' => 'Pembelian',
                     'url'  => 'laporan/lpembelian',
-                    'icon' => 'fas fa-fw fa-lock',
+                    'icon' => 'fas fa-file',
                 ],
                 [
                     'text' => 'Penjualan',
                     'url'  => 'laporan/lpenjualan',
-                    'icon' => 'fas fa-fw fa-lock',
+                    'icon' => 'fas fa-file',
                 ],
                 [
                     'text' => 'Pengeluaran Kas',
                     'url'  => 'laporan/lpengeluarankas',
-                    'icon' => 'fas fa-fw fa-lock',
+                    'icon' => 'fas fa-file',
                 ],
                 [
                     'text' => 'Penerimaan Kas',
                     'url'  => 'laporan/lpenerimaankas',
-                    'icon' => 'fas fa-fw fa-lock',
+                    'icon' => 'fas fa-file',
                 ],
                 [
                     'text' => 'Buku Besar Kas',
                     'url'  => 'laporan/lbukubesarkas',
-                    'icon' => 'fas fa-fw fa-lock',
+                    'icon' => 'fas fa-file',
                 ],
                 [
                     'text' => 'Cash Flow',
                     'url'  => 'laporan/laruskas',
-                    'icon' => 'fas fa-fw fa-lock',
+                    'icon' => 'fas fa-file',
                 ],
             ],
         ],
