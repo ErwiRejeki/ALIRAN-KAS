@@ -112,4 +112,20 @@ class LaporanController extends Controller
         }
         return view('pages.laporan.LBukuBesarKas',  compact('data'));
     }
+    public function laruskas(Request $request)
+    {
+        $data =  new \stdClass();
+        $data->enddate = ($request->enddate) ? $request->enddate : Carbon::now()->endOfMonth()->format('Y-m-d');
+        $data->startdate = ($request->startdate) ? $request->startdate : Carbon::now()->startOfMonth()->format('Y-m-d');
+        $data->total_debet = 0;
+        $data->total_kredit = 0;
+        $data->list = DB::table('kas')->whereBetween('kas_tgl', [$data->startdate, $data->enddate])->orderby('kas_tgl')->get();
+        if ($data->list) {
+            foreach ($data->list as $item) {
+                $data->total_debet = $data->total_debet + $item->kas_debet;
+                $data->total_kredit = $data->total_kredit + $item->kas_kredit;
+            }
+        }
+        return view('pages.laporan.LArusKas',  compact('data'));
+    }
 }

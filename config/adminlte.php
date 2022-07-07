@@ -247,9 +247,9 @@ return [
             'can'  => 'manage-blog',
         ],
         [
-            'text'        => 'Home',
+            'text'        => 'Dashboard',
             'url'         => 'home',
-            'icon'        => 'fa-dashboard',
+            'icon'        => 'fas fa-home',
             'label_color' => 'success',
         ],
         [
@@ -306,12 +306,12 @@ return [
                 [
                     'text' => 'Penerimaan Kas',
                     'url'  => 'jurnal/jpenerimaankas',
-                    'icon' => 'fas fa-newspaper-o',
+                    'icon' => 'fas fa-newspaper',
                 ],
                 [
                     'text' => 'Pengeluaran Kas',
                     'url'  => 'jurnal/jpengeluarankas',
-                    'icon' => 'fas fa-newspaper-o',
+                    'icon' => 'fas fa-newspaper',
                 ],
             ],
         ],

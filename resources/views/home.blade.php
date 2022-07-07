@@ -13,7 +13,6 @@
             </div>
             <div class="block-content">
                 <h2 class="block-title" style="font-size: 2rem;">Aplikasi Aliran Kas pada Toko Sumber Rejeki</h2>
-                <p></p>
             </div>
         </div>
     </center>
