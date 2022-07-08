@@ -25,9 +25,15 @@
                     @csrf
                     <x-adminlte-input name="id" label="id" placeholder="ID" type="text" igroup-size="sm" value="{{$data->user->id}}" required readonly />
                     <x-adminlte-input name="name" label="Nama Users" placeholder="Nama Users" type="text" igroup-size="sm" value="{{$data->user->name}}" required />
-                    <x-adminlte-input name="jabatan" label="jabatan" placeholder="jabatan" type="text" igroup-size="sm" value="{{$data->user->jabatan}}" required />
+                    <x-adminlte-select2 name="jabatan" label="Jabatan" required>
+                        <option value="">Pilih Data</option>
+                        <option value="administrator" @if($data->user->jabatan == "administrator") selected @endif>Administrator</option>
+                        <option value="kasir" @if($data->user->jabatan == "kasir") selected @endif>Kasir </option>
+                        <option value="pembelian" @if($data->user->jabatan == "pembelian") selected @endif>Pembelian </option>
+                        <option value="pemilik" @if($data->user->jabatan == "pemilik") selected @endif>Pemilik</option>
+                    </x-adminlte-select2>
                     <x-adminlte-input name="email" label="Email" placeholder="Email" type="text" igroup-size="sm" value="{{$data->user->email}}" required />
-                    <x-adminlte-input name="password" label="Password" placeholder="Password" type="text" igroup-size="sm" value="{{$data->user->password}}" required />
+                    <x-adminlte-input name="password" label="Password *Mengisi berarti mengubah password" placeholder="Password" type="text" igroup-size="sm" />
 
                     <x-adminlte-button class="btn-flat" type="reset" label="Reset" theme="secondary" icon="fas fa-lg fa-arrow-left" />
                     <x-adminlte-button class="btn-flat" type="submit" label="Submit" theme="success" icon="fas fa-lg fa-save" />

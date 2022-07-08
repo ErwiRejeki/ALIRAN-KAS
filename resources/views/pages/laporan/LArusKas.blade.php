@@ -27,19 +27,19 @@
                             </tr>
                             <tr>
                                 <td class="text-left">Penerimaan dari Pelanggan</td>
-                                <td class="text-right">Rp. 0000</td>
+                                <td class="text-right">@rp($data->penjualan)</td>
                             </tr>
                             <tr>
                                 <td class="text-left">Pembayaran ke Supplier</td>
-                                <td class="text-right">Rp. 0000</td>
+                                <td class="text-right">@rp($data->pembelian)</td>
                             </tr>
                             <tr>
                                 <td class="text-left">Pengeluaran Operasional</td>
-                                <td class="text-right">Rp. 0000</td>
+                                <td class="text-right">@rp($data->biaya)</td>
                             </tr>
                             <tr class="table-secondary">
                                 <td class="text-right font-w600 text-uppercase">Kas Bersih yang diperoleh dari Aktivitas Operasional</td>
-                                <td class="text-right font-w600">@rp($data->total_debet-$data->total_kredit)</td>
+                                <td class="text-right font-w600">@rp($data->penjualan-$data->pembelian-$data->biaya)</td>
                             </tr>
 
                             <tr>
@@ -56,7 +56,7 @@
                             </tr>
                             <tr class="table-secondary">
                                 <td class="text-right font-w600 text-uppercase">Kas Bersih yang diperoleh dari Aktivitas Investasi</td>
-                                <td class="text-right font-w600">@rp($data->total_debet-$data->total_kredit)</td>
+                                <td class="text-right font-w600">Rp. 0000</td>
                             </tr>
 
                             <tr>
@@ -73,7 +73,7 @@
                             </tr>
                             <tr class="table-secondary">
                                 <td class="text-right font-w600 text-uppercase">Kas Bersih yang diperoleh dari Aktivitas Investasi</td>
-                                <td class="text-right font-w600">@rp($data->total_debet-$data->total_kredit)</td>
+                                <td class="text-right font-w600">Rp. 0000</td>
                             </tr>
                         </tbody>
                     </table>
@@ -84,7 +84,7 @@
     <div class="modal fade" id="modal-fromleft" tabindex="-1" role="dialog" aria-labelledby="modal-fromleft" aria-hidden="true">
         <div class="modal-dialog modal-dialog-fromleft" role="document">
             <div class="modal-content">
-                <form action="{{ route('laporan.lbukubesarkas') }}" method="get" >
+                <form action="{{ route('laporan.laruskas') }}" method="get" >
                     <div class="card card-primary block-transparent mb-0">
                         <div class="card-header bg-primary">
                             <h3 class="block-title">Periode Laporan</h3>

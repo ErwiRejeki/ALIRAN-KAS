@@ -101,6 +101,13 @@
 @section('adminlte_js')
 @stack('js')
 <script>
+    function printDiv(divName) {
+        var printContents = document.getElementById(divName).innerHTML;
+        var originalContents = document.body.innerHTML;
+        document.body.innerHTML = printContents;
+        window.print();
+        document.body.innerHTML = originalContents;
+    }
     $('#table_custome').DataTable({
         "paging": true,
         "lengthChange": true,
@@ -183,13 +190,7 @@
         })
     }
 
-    function printDiv(divName) {
-        var printContents = document.getElementById(divName).innerHTML;
-        var originalContents = document.body.innerHTML;
-        document.body.innerHTML = printContents;
-        window.print();
-        document.body.innerHTML = originalContents;
-    }
+    
 </script>
 @yield('js')
 @stop

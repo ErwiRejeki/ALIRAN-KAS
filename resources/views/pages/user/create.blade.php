@@ -23,7 +23,13 @@
                 <form method="POST" action="{{route('user.store')}}">
                     @csrf
                     <x-adminlte-input name="name" label="Nama User" placeholder="Nama User" type="text" igroup-size="sm" required />
-                    <x-adminlte-input name="jabatan" label="Jabatan" placeholder="Jabatan" type="text" igroup-size="sm" min=1 required />
+                    <x-adminlte-select2 name="jabatan" label="Jabatan" required>
+                        <option value="">Pilih Data</option>
+                        <option value="administrator">Administrator</option>
+                        <option value="kasir">Kasir </option>
+                        <option value="pembelian">Pembelian </option>
+                        <option value="pemilik">Pemilik</option>
+                    </x-adminlte-select2>
                     <x-adminlte-input name="email" label="Email" placeholder="Email" type="text" igroup-size="sm" min=1 required />
                     <x-adminlte-input name="password" label="Password" placeholder="Password" type="text" igroup-size="sm" min=1 required />
 

@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Helpers\Helper;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth');
+        Session(['saldo' => Helper::saldo()]);
     }
     /**
      * Display a listing of the resource.
@@ -76,7 +78,12 @@ class UserController extends Controller
             'email' => 'required ',
             'password' => 'required ',
         ]);
-        $store = new User($request->all());
+        $data = [];
+        $data['name'] = $request->name;
+        $data['jabatan'] = $request->jabatan;
+        $data['email'] = $request->email;
+        $data['password'] =  Hash::make($request->password);
+        $store = new User($data);
         $store->save();
         return redirect()->route('user.index')
             ->with('success','Menambah User telah berhasil disimpan');
@@ -124,7 +131,14 @@ class UserController extends Controller
             'jabatan' => 'required ',
             'email' => 'required ',
         ]);
-        $update = User::findOrFail($id)->update($request->all());
+        $data = [];
+        $data['name'] = $request->name;
+        $data['jabatan'] = $request->jabatan;
+        $data['email'] = $request->email;
+        if($request->password){
+        $data['password'] =  Hash::make($request->password);
+        }
+        $update = User::findOrFail($id)->update($data);
         return redirect()->route('user.index')
         ->with('success','Perubahan Users telah berhasil disimpan');
     }

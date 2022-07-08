@@ -286,11 +286,13 @@ return [
                     'text' => 'Penjualan',
                     'url'  => 'transaksi_penjualan',
                     'icon' => 'fa fa-cart-arrow-down',
+                    'can'  => ['AUTH_ADMINISTRATOR', 'AUTH_PEMILIK', 'AUTH_KASIR']
                 ],
                 [
                     'text' => 'Pembelian',
                     'url'  => 'transaksi_pembelian',
                     'icon' => 'fa fa-cart-plus',
+                    'can'  => ['AUTH_ADMINISTRATOR', 'AUTH_PEMILIK', 'AUTH_PEMBELIAN']
                 ],
                 [
                     'text' => 'Biaya',
@@ -324,11 +326,13 @@ return [
                     'text' => 'Pembelian',
                     'url'  => 'laporan/lpembelian',
                     'icon' => 'fas fa-file',
+                    'can'  => ['AUTH_ADMINISTRATOR', 'AUTH_PEMILIK', 'AUTH_PEMBELIAN']
                 ],
                 [
                     'text' => 'Penjualan',
                     'url'  => 'laporan/lpenjualan',
                     'icon' => 'fas fa-file',
+                    'can'  => ['AUTH_ADMINISTRATOR', 'AUTH_PEMILIK', 'AUTH_KASIR']
                 ],
                 [
                     'text' => 'Pengeluaran Kas',

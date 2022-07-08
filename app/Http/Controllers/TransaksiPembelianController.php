@@ -12,6 +12,9 @@ use App\Models\ReturPembelian;
 use App\Models\Kas;
 use App\Helpers\Helper;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Gate;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class TransaksiPembelianController extends Controller
 {
@@ -19,6 +22,7 @@ class TransaksiPembelianController extends Controller
     {
         $this->middleware('auth');
         Session(['saldo' => Helper::saldo()]);
+        
     }
     /**
      * Display a listing of the resource.

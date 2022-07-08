@@ -29,15 +29,17 @@
                             <tr>
                                 <td class="font-w600 text-center">@date($list->kas_tgl)</td>
                                 <td class="text-center font-w600 text-uppercase ">
-                                    @if($list->kas_ket=='beli')
+                                    @if($list->kas_ket=='pembelian')
                                     Pembelian
-                                    @elseif($list->kas_ket=='retur')
+                                    @elseif($list->kas_ket=='retur pembelian')
                                     Retur pembelian
                                     @elseif($list->kas_ket=='biaya')
                                     Biaya
-                                    @elseif($list->kas_ket=='jual')
+                                    @elseif($list->kas_ket=='penjualan')
                                     Penjualan
-                                    @elseif($list->kas_type=='modal')
+                                    @elseif($list->kas_ket=='retur penjualan')
+                                    Retur Penjualan
+                                    @elseif($list->kas_ket=='modal awal')
                                     Kas
                                     @endif
                                 </td>
