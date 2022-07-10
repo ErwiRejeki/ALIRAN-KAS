@@ -45,8 +45,8 @@ return [
     |
     */
 
-    'logo' => '<b>Sumber Rejeki</b>',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+    'logo' => '<span class="font-size-xl text-dual-primary-dark">SUMBER </span>-<span class="font-size-xl text-primary">REJEKI</span>',
+    'logo_img' => 'LOGO.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -223,7 +223,7 @@ return [
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Menu-Configuration
     |
     */
-
+    
     'menu' => [
         // Navbar items:
         [

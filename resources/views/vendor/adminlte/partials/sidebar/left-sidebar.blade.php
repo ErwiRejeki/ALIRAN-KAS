@@ -10,6 +10,21 @@
     {{-- Sidebar menu --}}
     <div class="sidebar">
         <nav class="pt-2">
+            <div class="sidebar">
+                <!-- Sidebar user panel (optional) -->
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                    <div class="image">
+                        <center><img class="img-avatar" src="user.jpg" alt="User Image" style="width : 100px; height: 100px; border-radius: 70px; "></center>
+</div>
+                    <div class="info">
+                        <ul class="list-inline mt-10">
+                            <li class="list-inline-item">
+                                <a class="link-effect text-dual-primary-dark font-size-lg font-w600 text-sentence">{{ Auth::user()->name }}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
             <ul class="nav nav-pills nav-sidebar flex-column {{ config('adminlte.classes_sidebar_nav', '') }}"
                 data-widget="treeview" role="menu"
                 @if(config('adminlte.sidebar_nav_animation_speed') != 300)
@@ -23,5 +38,4 @@
             </ul>
         </nav>
     </div>
-
 </aside>

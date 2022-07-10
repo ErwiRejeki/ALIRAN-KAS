@@ -13,10 +13,10 @@
         {{-- Custom left links --}}
         @yield('content_top_nav_left')
 
-        <button type="button" class="btn btn-success mr-2" >
+        <button type="button" class="btn btn-outline-success mr-2" >
         <i class="fa fa-info"></i> Saldo @rp(Session::get('saldo'))
         </button>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-saldo">
+        <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#modal-saldo">
             <i class="fa fa-plus"></i> Tambah Saldo
         </button>
     </ul>
