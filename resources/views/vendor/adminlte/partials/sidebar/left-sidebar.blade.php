@@ -13,15 +13,19 @@
             <div class="sidebar">
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                    <div class="image">
-                        <center><img class="img-avatar" src="user.jpg" alt="User Image" style="width : 100px; height: 100px; border-radius: 70px; "></center>
-</div>
                     <div class="info">
-                        <ul class="list-inline mt-10">
-                            <li class="list-inline-item">
-                                <a class="link-effect text-dual-primary-dark font-size-lg font-w600 text-sentence">{{ Auth::user()->name }}</a>
-                            </li>
-                        </ul>
+                        <center>
+                            <div class="image">
+                                <img class="img-avatar" src="user.jpg" alt="User Image">
+                            </div>
+                        
+                            <ul class="list-inline mt-10" style ="font-coloe:white;">
+                                <li class="list-inline-item">
+                                    <a class="link-effect text-dual-primary-dark font-size-lg font-w600 text-sentence">{{ Auth::user()->name }}</a> - 
+                                    <a class="link-effect text-dual-primary-dark font-size-lg font-w600 text-sentence">{{ Auth::user()->jabatan }}</a>
+                                </li>
+                            </ul>
+                        </center>
                     </div>
                 </div>
             </div>

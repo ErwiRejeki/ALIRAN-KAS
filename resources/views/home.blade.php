@@ -3,117 +3,113 @@
 @section('content_header')
 @stop
 @section('content')
-    <main class="content">
-				<div class="container-fluid p-0">
-					<h1 class="h3 mb-3"><strong>Dashboard</strong></h1>
-					<hr>
-					<div class="row">
-						<div class="col-xl-6 col-xxl-5 d-flex">
-							<div class="w-100">
-								<div class="row">
-									<div class="col-sm-6">
-										<div class="card">
-											<div class="card-body">
-												<div class="row">
-													<div class="col mt-0">
-														<h5 class="card-title">Penjualan</h5>
-													</div>
-
-													<div class="col-auto primary">
-														<div class="stat text-primary">
-															<i class="fas fa-shopping-cart" data-feather="truck"></i>
-														</div>
-													</div>
-												</div>
-												<h1 class="mt-1 mb-3"><div class="count">{{$countPenjualan}}</div></h1>
-												<div class="mb-0">
-													<span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i> -3.65% </span>
-													<span class="text-muted">Since last week</span>
-												</div>
-											</div>
-										</div>
-										<div class="card">
-											<div class="card-body">
-												<div class="row">
-													<div class="col mt-0">
-														<h5 class="card-title">Kas Masuk</h5>
-													</div>
-
-													<div class="col-auto">
-														<div class="stat text-primary">
-															<i class="fas fa-money-bill-alt" data-feather="users"></i>
-														</div>
-													</div>
-												</div>
-												<h1 class="mt-1 mb-3">14.212</h1>
-												<div class="mb-0">
-													<span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i> 5.25% </span>
-													<span class="text-muted">Since last week</span>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="col-sm-6">
-										<div class="card">
-											<div class="card-body">
-												<div class="row">
-													<div class="col mt-0">
-														<h5 class="card-title">Pembelian</h5>
-													</div>
-
-													<div class="col-auto">
-														<div class="stat text-primary">
-															<i class="fas fa-truck" data-feather="truck"></i>
-														</div>
-													</div>
-												</div>
-												<h1 class="mt-1 mb-3"><div class="count">{{$countPembelian}}</div></h1>
-												<div class="mb-0">
-													<span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i> 6.65% </span>
-													<span class="text-muted">Since last week</span>
-												</div>
-											</div>
-										</div>
-										<div class="card">
-											<div class="card-body">
-												<div class="row">
-													<div class="col mt-0">
-														<h5 class="card-title">Kas Keluar</h5>
-													</div>
-
-													<div class="col-auto">
-														<div class="stat text-primary">
-															<i class="fas fa-money-bill-alt" data-feather="shopping-cart"></i>
-														</div>
-													</div>
-												</div>
-												<h1 class="mt-1 mb-3">64</h1>
-												<div class="mb-0">
-													<span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i> -2.25% </span>
-													<span class="text-muted">Since last week</span>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-xl-6 col-xxl-7">
-							<div class="card flex-fill w-100">
-								<div class="card-header">
-									<h5 class="card-title mb-0">Grafik Penjualan</h5>
-								</div>
-								<div class="col-md-9 col-sm-9 col-xs-12">
-									<div style="padding: 15px;">
-										<canvas id="myChart" width="100%"></canvas>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</main>
+	<h1 class="h3 mb-3"><strong>Dashboard</strong></h1>
+  <div class="block-content">
+    <h2 class="block-title" style="font-size: 2rem; font">Aplikasi Aliran Kas pada Toko Sumber Rejeki</h2>
+  </div>
+  <main class="main-content position-relative border-radius-lg ">
+    <div class="container-fluid py-4">
+      <div class="row">
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+          <div class="card">
+            <div class="card-body bg-primary p-3">
+              <div class="row">
+                <div class="col-8">
+                  <div class="numbers">
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Penjualan</p>
+                    <h5 class="font-weight-bolder">@rp($data->penjualan)
+                    </h5>
+                    <p class="mb-0">
+                      <span class="text-success text-sm font-weight-bolder"></span>
+                      Barang terjual
+                    </p>
+                  </div>
+                </div>
+                <div class="col-4 text-end">
+                  <div class="icon icon-shape shadow-primary text-center rounded-circle">
+                    <i class="fas fa-shopping-cart text-lg opacity-10" aria-hidden="true"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+          <div class="card">
+            <div class="card-body bg-warning p-3">
+              <div class="row">
+                <div class="col-8">
+                  <div class="numbers">
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold text-white">Pembelian</p>
+                    <h5 class="font-weight-bolder text-white">
+                    @rp($data->pembelian)
+                    </h5>
+                    <p class="mb-0 text-white">
+                      <span class="text-success text-sm font-weight-bolder text-white"></span>
+                      Barang Terbeli
+                    </p>
+                  </div>
+                </div>
+                <div class="col-4 text-end">
+                  <div class="icon icon-shape shadow-danger text-center rounded-circle">
+                    <i class="fas fa-truck text-lg opacity-10 text-white" aria-hidden="true"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+          <div class="card">
+            <div class="card-body bg-success p-3">
+              <div class="row">
+                <div class="col-8">
+                  <div class="numbers">
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Kas Masuk</p>
+                    <h5 class="font-weight-bolder">
+                    @rp($data->total)
+                    </h5>
+                    <p class="mb-0">
+                      <span class="text-danger text-sm font-weight-bolder"></span>
+                      Jumlah Kas Masuk
+                    </p>
+                  </div>
+                </div>
+                <div class="col-4 text-end">
+                  <div class="icon icon-shape shadow-success text-center rounded-circle">
+                    <i class="fas fa-money-bill-alt text-lg opacity-10" aria-hidden="true"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+          <div class="card">
+            <div class="card-body bg-danger p-3">
+              <div class="row">
+                <div class="col-8">
+                  <div class="numbers">
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Kas Keluar</p>
+                    <h5 class="font-weight-bolder">
+                    @rp($data->total1)
+                    </h5>
+                    <p class="mb-0">
+                      <span class="text-success text-sm font-weight-bolder"></span> Jumlah Kas Keluar
+                    </p>
+                  </div>
+                </div>
+                <div class="col-4 text-end">
+                  <div class="icon icon-shape shadow-warning text-center rounded-circle">
+                    <i class="fas fa-money-bill-alt text-lg opacity-10" aria-hidden="true"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 @stop
 
 @section('css')
@@ -121,36 +117,6 @@
 @stop
 
 @section('js')
-<script>
-	const ctx = document.getElementById('myChart').getContext('2d');
-	const labels = [];
-	const data = [];
-	const penjualangraph = {!! json_encode($penjualangraph) !!};
-
-	penjualangraph.forEach(r => {
-		const { name, penjualan } = r;
-		labels.push(name);
-		data.push(penjualan);
-	});
-	const myChart = new Chart(ctx, {
-		type: 'bar',
-		data: {
-			labels,
-			datasets: [{
-				label: 'Total Penjualan',
-				backgroundColor: 'rgb(255, 99, 132)',
-				data,
-			}]
-		},
-		options: {
-			scales: {
-				y: {
-					beginAtZero: true
-				}
-			}
-		}
-	});
-	</script>
 @stop
 
 @section('footer')

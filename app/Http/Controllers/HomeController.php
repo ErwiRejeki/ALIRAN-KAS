@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Helpers\Helper;
-use Illuminate\Support\Facades\DB;
+use DB;
+use Carbon\Carbon;
+use App\Models\Kas;
 
 class HomeController extends Controller
 {
@@ -26,11 +28,23 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $penjualangraph = DB::table(DB::table(DB::raw("(select extract(YEAR_MONTH from tgl_jual) as alias, concat(MONTHNAME(tgl_jual), ' ', year(tgl_jual)) as name, sum(total_jual) as jual from penjualan group by extract(YEAR_MONTH from tgl_jual), concat(MONTHNAME(tgl_jual), ' ', year(tgl_jual))) x")))->limit(6)->get();
-        return view('home', [
-            'countPenjualan' =>  DB::table('penjualan')->count(),
-            'countPembelian' =>  DB::table('pembelian')->count(),
-            'penjualangraph' => $penjualangraph,
-        ]);
+        $data =  new \stdClass();
+        $data->penjualan = DB::table('kas')->where('kas_type','TRANSAKSI')->where('kas_ket','penjualan')->sum('kas_debet');
+        $data->pembelian = DB::table('kas')->where('kas_type','TRANSAKSI')->where('kas_ket','pembelian')->sum('kas_kredit');
+        $data->total = 0;
+        $data->list = DB::table('kas')->wherein('kas_ket', ['penjualan', 'retur pembelian'])->orderby('kas_tgl', 'asc')->get();
+        if ($data->list) {
+            foreach ($data->list as $item) {
+                $data->total = $data->total + $item->kas_debet;
+            }
+        }
+        $data->total1 = 0;
+        $data->list = DB::table('kas')->wherein('kas_ket', ['biaya', 'pembelian', 'retur penjualan'])->orderby('kas_tgl', 'asc')->get();
+        if ($data->list) {
+            foreach ($data->list as $item) {
+                $data->total1 = $data->total1 + $item->kas_kredit;
+            }
+        }
+        return view('home',  compact('data'));
     }
 }
