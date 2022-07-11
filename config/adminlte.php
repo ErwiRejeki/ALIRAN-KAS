@@ -45,7 +45,7 @@ return [
     |
     */
 
-    'logo' => '<span class="font-size-xl text-dual-primary-dark">SUMBER </span>-<span class="font-size-xl text-primary">REJEKI</span>',
+    'logo' => '<span class="font-size-xl text-dual-primary-dark">SUMBER REJEKI</span>',
     'logo_img' => 'LOGO.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,

@@ -4,8 +4,14 @@
 @stop
 @section('content')
 	<h1 class="h3 mb-3"><strong>Dashboard</strong></h1>
-  <div class="block-content">
-    <h2 class="block-title" style="font-size: 2rem; font">Aplikasi Aliran Kas pada Toko Sumber Rejeki</h2>
+  <hr>
+  <div class="block" style="text-align:center;">
+    <div class="block-header block-header-default">
+      <h3 class="block-title" style="font-size: 2rem;">Selamat Datang</h3>
+    </div>
+    <div class="block-content">
+      <h2 class="block-title" style="font-size: 2rem;">Aplikasi Aliran Kas pada Toko Sumber Rejeki</h2>
+    </div>
   </div>
   <main class="main-content position-relative border-radius-lg ">
     <div class="container-fluid py-4">

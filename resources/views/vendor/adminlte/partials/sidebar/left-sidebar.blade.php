@@ -12,20 +12,18 @@
         <nav class="pt-2">
             <div class="sidebar">
                 <!-- Sidebar user panel (optional) -->
-                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                    <div class="info">
-                        <center>
+                <div class="user-panel d-flex">
+                    <div class="info" style ="padding-left:45px;text-align :center;position:center;">
                             <div class="image">
-                                <img class="img-avatar" src="user.jpg" alt="User Image">
+                                <img class="img-avatar" src="user.jpg" alt="User Image" style="width:50px;border-radius:30px;">
                             </div>
                         
-                            <ul class="list-inline mt-10" style ="font-coloe:white;">
+                            <ul class="list-inline mt-10">
                                 <li class="list-inline-item">
-                                    <a class="link-effect text-dual-primary-dark font-size-lg font-w600 text-sentence">{{ Auth::user()->name }}</a> - 
-                                    <a class="link-effect text-dual-primary-dark font-size-lg font-w600 text-sentence">{{ Auth::user()->jabatan }}</a>
+                                    <a class="link-effect text-dual-primary-dark font-size-lg font-w600 text-sentence">{{ Auth::user()->name }}</a> <br> 
+                                    <a class="link-effect text-dual-primary-dark font-size-lg font-w600 text-uppercase">{{ Auth::user()->jabatan }}</a>
                                 </li>
                             </ul>
-                        </center>
                     </div>
                 </div>
             </div>
