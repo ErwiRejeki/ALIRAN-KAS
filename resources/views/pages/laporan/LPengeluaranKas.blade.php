@@ -27,7 +27,7 @@
                             <tr>
                                 <td class="font-w600 text-center">@date($list->kas_tgl)</td>
                                 <td class="text-center font-w600 text-uppercase ">
-                                    {{$list->nobuk}}
+                                  @if(isset($list->nobuk))  {{$list->nobuk}} @endif
                                 </td>
                                 <td class="text-right">@rp($list->kas_kredit)</td>
                             </tr>

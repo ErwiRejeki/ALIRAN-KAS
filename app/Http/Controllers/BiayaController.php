@@ -71,7 +71,7 @@ class BiayaController extends Controller
             'nama_biaya' => 'required ',
         ]);
         $store = new Biaya($request->all());
-        $store->id_biaya = Helper::getCode('biaya', 'id_biaya', 'SP-');
+        $store->id_biaya = Helper::getCode('biaya', 'id_biaya', 'BY-');
         $store->save();
         return redirect()->route('biaya.index')
             ->with('success','Menambah Biaya telah berhasil disimpan');

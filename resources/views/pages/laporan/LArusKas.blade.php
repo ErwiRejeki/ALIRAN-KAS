@@ -41,40 +41,6 @@
                                 <td class="text-right font-w600 text-uppercase">Kas Bersih yang diperoleh dari Aktivitas Operasional</td>
                                 <td class="text-right font-w600">@rp($data->penjualan-$data->pembelian-$data->biaya)</td>
                             </tr>
-
-                            <tr>
-                                <td class="font-w600 text-center">Arus Kas dari Aktivitas Investasi</td>
-                                <td class="font-w600 text-center"></td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Perolehan / Penjualan Aset</td>
-                                <td class="text-right">Rp. 0</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Aktivitas investasi lainnya</td>
-                                <td class="text-right">Rp. 0</td>
-                            </tr>
-                            <tr class="table-secondary">
-                                <td class="text-right font-w600 text-uppercase">Kas Bersih yang diperoleh dari Aktivitas Investasi</td>
-                                <td class="text-right font-w600">Rp. 0</td>
-                            </tr>
-
-                            <tr>
-                                <td class="font-w600 text-center">Arus Kas dari Aktivitas Keuangan</td>
-                                <td class="font-w600 text-center"></td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Pembayaran / Penerimaan Pinjaman</td>
-                                <td class="text-right">Rp. 0</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Ekuitas /  Modal</td>
-                                <td class="text-right">Rp. 0</td>
-                            </tr>
-                            <tr class="table-secondary">
-                                <td class="text-right font-w600 text-uppercase">Kas Bersih yang diperoleh dari Aktivitas Investasi</td>
-                                <td class="text-right font-w600">Rp. 0</td>
-                            </tr>
                         </tbody>
                     </table>
                 </div>

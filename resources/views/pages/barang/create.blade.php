@@ -33,16 +33,8 @@
                     <x-adminlte-input name="margin_barang" label="Margin Barang" placeholder="Margin Barang" type="number" igroup-size="sm" min=1 required />
                     <x-adminlte-input name="stok_barang" label="Stok Barang" placeholder="Stok Barang" type="number" igroup-size="sm" min=1 required />
                     <x-adminlte-input name="satuan_barang" label="Satuan Barang" placeholder="Satuan Barang" type="text" igroup-size="sm" min=1 required />
-                    <x-adminlte-input name="potongan" label="Potongan Harga" placeholder="Potongan Harga" type="number" igroup-size="sm" min=1 required>
-                        <x-slot name="prependSlot">
-                            <div class="input-group-text bg-dark">
-                                Rp.
-                            </div>
-                        </x-slot>
-                    </x-adminlte-input>
                     <x-adminlte-button class="btn-flat" type="reset" label="Reset" theme="secondary" icon="fas fa-lg fa-arrow-left" />
                     <x-adminlte-button class="btn-flat" type="submit" label="Submit" theme="success" icon="fas fa-lg fa-save" />
-
                 </form>
             </div>
         </div>

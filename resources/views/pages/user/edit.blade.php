@@ -15,7 +15,7 @@
                         <i class="fa fa-arrow-left"></i>
 
                     </button>
-                    <h3 class="ml-3">Form Users</h3>
+                    <h3 class="ml-3">Form Edit Users</h3>
                 </div>
 
             </div>
@@ -27,13 +27,12 @@
                     <x-adminlte-input name="name" label="Nama Users" placeholder="Nama Users" type="text" igroup-size="sm" value="{{$data->user->name}}" required />
                     <x-adminlte-select2 name="jabatan" label="Jabatan" required>
                         <option value="">Pilih Data</option>
-                        <option value="administrator" @if($data->user->jabatan == "administrator") selected @endif>Administrator</option>
-                        <option value="kasir" @if($data->user->jabatan == "kasir") selected @endif>Kasir </option>
-                        <option value="pembelian" @if($data->user->jabatan == "pembelian") selected @endif>Pembelian </option>
-                        <option value="pemilik" @if($data->user->jabatan == "pemilik") selected @endif>Pemilik</option>
+                        <option value="kasir" @if($data->user->jabatan == "Kasir") selected @endif>Kasir </option>
+                        <option value="pembelian" @if($data->user->jabatan == "Pembelian") selected @endif>Pembelian </option>
+                        <option value="pemilik" @if($data->user->jabatan == "Pemilik") selected @endif>Pemilik</option>
                     </x-adminlte-select2>
                     <x-adminlte-input name="email" label="Email" placeholder="Email" type="text" igroup-size="sm" value="{{$data->user->email}}" required />
-                    <x-adminlte-input name="password" label="Password *Mengisi berarti mengubah password" placeholder="Password" type="text" igroup-size="sm" />
+                    <x-adminlte-input name="password" label="Password *Mengisi berarti mengubah password" placeholder="Password" type="password" igroup-size="sm" />
 
                     <x-adminlte-button class="btn-flat" type="reset" label="Reset" theme="secondary" icon="fas fa-lg fa-arrow-left" />
                     <x-adminlte-button class="btn-flat" type="submit" label="Submit" theme="success" icon="fas fa-lg fa-save" />

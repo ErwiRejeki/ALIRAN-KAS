@@ -25,13 +25,12 @@
                     <x-adminlte-input name="name" label="Nama User" placeholder="Nama User" type="text" igroup-size="sm" required />
                     <x-adminlte-select2 name="jabatan" label="Jabatan" required>
                         <option value="">Pilih Data</option>
-                        <option value="administrator">Administrator</option>
                         <option value="kasir">Kasir </option>
                         <option value="pembelian">Pembelian </option>
                         <option value="pemilik">Pemilik</option>
                     </x-adminlte-select2>
                     <x-adminlte-input name="email" label="Email" placeholder="Email" type="text" igroup-size="sm" min=1 required />
-                    <x-adminlte-input name="password" label="Password" placeholder="Password" type="text" igroup-size="sm" min=1 required />
+                    <x-adminlte-input name="password" label="Password" placeholder="Password" type="password" igroup-size="sm" min=1 required />
 
                     <x-adminlte-button class="btn-flat" type="reset" label="Reset" theme="secondary" icon="fas fa-lg fa-arrow-left" />
                     <x-adminlte-button class="btn-flat" type="submit" label="Submit" theme="success" icon="fas fa-lg fa-save" />

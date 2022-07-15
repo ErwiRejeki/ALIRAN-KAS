@@ -28,7 +28,7 @@
                                         <select onchange="getharga(this, 'detail_jual')" class="js-select2 form-control" id="id_barang" name="id_barang" required style="width: 100%;" >
                                             <option>--Pilih Data--</option>
                                             @foreach($data->barang as $barang)
-                                            <option harga_beli="{{$barang->harga_beli_barang}}" harga="{{$barang->harga_beli_barang + ( ($barang->harga_beli_barang/100)*$barang->margin_barang ) }}" stok="{{$barang->stok_barang}}" value="{{$barang->id_barang}}" @php echo ($data->edit) ? ($data->edit->id_barang == $barang->id_barang) ? 'selected': '' : null; @endphp>{{$barang->id_barang}} [ {{$barang->nama_barang}} ]</option>
+                                            <option harga_beli="{{$barang->harga_beli_barang}}" harga="{{$barang->harga_beli_barang + ($barang->harga_beli_barang*($barang->margin_barang/100)) }}" stok="{{$barang->stok_barang}}" value="{{$barang->id_barang}}" @php echo ($data->edit) ? ($data->edit->id_barang == $barang->id_barang) ? 'selected': '' : null; @endphp>{{$barang->id_barang}} [ {{$barang->nama_barang}} ]</option>
                                             @endforeach
                                         </select>
                                     </div>

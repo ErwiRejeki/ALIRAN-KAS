@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
         
-    return redirect('home');
+    return view('welcome');
 
 });
 
@@ -69,6 +69,7 @@ Route::get('/laporan/lpenerimaankas',[LaporanController::class, 'lpenerimaankas'
 Route::get('/laporan/lpengeluarankas',[LaporanController::class, 'lpengeluarankas'])->name('laporan.lpengeluarankas');
 Route::get('/laporan/lbukubesarkas', [LaporanController::class, 'lbukubesarkas'])->name('laporan.lbukubesarkas');
 Route::get('/laporan/laruskas', [LaporanController::class, 'laruskas'])->name('laporan.laruskas');
+//Route::get('/laporan/ReturPenjualan', [LaporanController::class, 'ReturPenjualan'])->name('laporan.ReturPenjualan');
 
 use App\Http\Controllers\SaldoController;
 Route::post('/saldo/store', [SaldoController::class, 'store'])->name('saldo.store');

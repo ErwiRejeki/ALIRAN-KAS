@@ -326,13 +326,13 @@ return [
                     'text' => 'Pembelian',
                     'url'  => 'laporan/lpembelian',
                     'icon' => 'fas fa-file',
-                    'can'  => ['AUTH_ADMINISTRATOR', 'AUTH_PEMILIK', 'AUTH_PEMBELIAN']
+                    'can'  => ['AUTH_PEMILIK', 'AUTH_PEMBELIAN']
                 ],
                 [
                     'text' => 'Penjualan',
                     'url'  => 'laporan/lpenjualan',
                     'icon' => 'fas fa-file',
-                    'can'  => ['AUTH_ADMINISTRATOR', 'AUTH_PEMILIK', 'AUTH_KASIR']
+                    'can'  => ['AUTH_PEMILIK', 'AUTH_KASIR']
                 ],
                 [
                     'text' => 'Pengeluaran Kas',
@@ -350,7 +350,7 @@ return [
                     'icon' => 'fas fa-file',
                 ],
                 [
-                    'text' => 'Cash Flow',
+                    'text' => 'Arus Kas',
                     'url'  => 'laporan/laruskas',
                     'icon' => 'fas fa-file',
                 ],

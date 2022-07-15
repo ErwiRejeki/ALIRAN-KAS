@@ -15,7 +15,7 @@
                 <div class="user-panel d-flex">
                     <div class="info" style ="padding-left:45px;text-align :center;position:center;">
                             <div class="image">
-                                <img class="img-avatar" src="user.jpg" alt="User Image" style="width:50px;border-radius:30px;">
+                                <img class="img-avatar" src="{{asset('foto.jpg')}}" alt="User Image" style="width:50px;border-radius:30px;">
                             </div>
                         
                             <ul class="list-inline mt-10">
