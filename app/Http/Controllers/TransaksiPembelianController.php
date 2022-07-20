@@ -167,7 +167,7 @@ class TransaksiPembelianController extends Controller
                 $request->except('_token', 'total_pembelian', 'total_retur', 'retur_jml_old')
             );
             $get_barang = Barang::where('id_barang', $request->id_barang)->first();
-            $update_stok = Barang::where('id_barang', $request->id_barang)->update(['stok_barang' => $get_barang->stok_barang+$request->retur_jml_old-$request->jml_retur_beli]); 
+            $update_stok = Barang::where('id_barang', $request->id_barang)->update(['stok_barang' => $get_barang->stok_barang-$request->jml_retur_beli]); 
             $set = Pembelian::where('id_beli', $request['id_beli'])->first();
             $retur_nominal = ($set->total_retur_beli == 0) ? ($request['harga_retur_beli'] * $request['jml_retur_beli']) : $set->total_retur_beli - $request['total_retur'] + ($request['harga_retur_beli'] * $request['jml_retur_beli']);
             $save_nominal_retur = Pembelian::where('id_beli', $request['id_beli'])->update(['total_retur_beli' => $retur_nominal]);

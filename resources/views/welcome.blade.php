@@ -165,9 +165,6 @@
                     <span class="font-size-xxl text-dual-primary-dark center">SUMBER- REJEKI</span>
                 </div>
                 <ul>
-                @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
-                        @endif
                     <li><a href="{{ route('login') }}">LOGIN</a></li>
                 </ul>
         </div>

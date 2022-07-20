@@ -156,6 +156,8 @@ class TransaksiPenjualanController extends Controller
                 ['id_retur_jual' => $request['id_retur_jual']],
                 $request->except('_token', 'total_penjualan', 'total_retur', 'retur_jml_old')
             );
+            $get_barang = Barang::where('id_barang', $request->id_barang)->first();
+            $update_stok = Barang::where('id_barang', $request->id_barang)->update(['stok_barang' => $get_barang->stok_barang+$request->jml_retur_jual]);
             $set = Penjualan::where('id_jual', $request['id_jual'])->first();
             $retur_nominal = ($set->total_retur_jual == 0) ? ($request['harga_retur_jual'] * $request['jml_retur_jual']) : $set->total_retur_jual - $request['total_retur'] + ($request['harga_retur_jual'] * $request['jml_retur_jual']);
             $save_nominal_retur = Penjualan::where('id_jual', $request['id_jual'])->update(['total_retur_jual' => $retur_nominal]);
